@@ -1,0 +1,32 @@
+name: Deploy JTCollector Theme
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+jobs:
+  deploy:
+    name: Deploy theme to Websupport
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Deploy via FTP
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.5
+        with:
+          server: ${{ secrets.WS_FTP_SERVER }}
+          username: ${{ secrets.WS_FTP_USERNAME }}
+          password: ${{ secrets.WS_FTP_PASSWORD }}
+          port: ${{ secrets.WS_FTP_PORT }}
+          protocol: ftps
+          local-dir: ./
+          server-dir: ./
+          exclude: |
+            **/.git*
+            **/.github*
+            **/.DS_Store
+            README.md
