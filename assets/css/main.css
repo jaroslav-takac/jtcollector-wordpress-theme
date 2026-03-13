@@ -83,8 +83,9 @@ a:hover{
   list-style: none;
 }
 
+/* Hlavný obsah */
 .site-main{
-  padding: 40px 0 56px;
+  padding: 0px 0 24px;
 }
 
 .entry-card{
