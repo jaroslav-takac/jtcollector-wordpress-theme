@@ -3,89 +3,13 @@
    ========================= */
 
 .shop-home-entry{
-  padding: 0 20px 40px;
+  padding: 24px 20px 24px;
   background: #eef3f8;
 }
 
 .shop-home-entry__inner{
   max-width: 1320px;
   margin: 0 auto;
-}
-
-.shop-home-entry__top{
-  padding: 6px 0 24px;
-  margin: 0;
-}
-
-.shop-home-entry__eyebrow{
-  display: none;
-}
-
-.shop-home-entry__nav{
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  align-items: center;
-  gap: 44px;
-}
-
-.shop-home-entry__nav--minimal{
-  min-height: 40px;
-}
-
-.shop-home-entry__nav-link{
-  color: inherit;
-  text-decoration: none;
-}
-
-.shop-home-entry__nav-link--minimal{
-  position: relative;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  padding: 4px 0;
-  min-height: auto;
-  border: 0;
-  border-radius: 0;
-  background: transparent;
-  color: #64748b;
-  font-weight: 800;
-  font-size: 1.15rem;
-  line-height: 1.2;
-  letter-spacing: .04em;
-  text-transform: uppercase;
-  text-decoration: none;
-  transition: color .2s ease;
-}
-
-.shop-home-entry__nav-link--minimal:hover,
-.shop-home-entry__nav-link--minimal:focus{
-  background: transparent;
-  color: #0f172a;
-  transform: none;
-}
-
-.shop-home-entry__nav-link--minimal::after{
-  content: "";
-  position: absolute;
-  left: 0;
-  bottom: -3px;
-  width: 100%;
-  height: 2px;
-  background: #66727e;
-  transform: scaleX(0);
-  transform-origin: center;
-  transition: transform .2s ease;
-}
-
-.shop-home-entry__nav-link--minimal:hover::after,
-.shop-home-entry__nav-link--minimal:focus::after,
-.shop-home-entry__nav-link--minimal.is-active::after{
-  transform: scaleX(1);
-}
-
-.shop-home-entry__nav-link--minimal.is-active{
-  color: #0f172a;
 }
 
 /* Main layout */
@@ -282,23 +206,7 @@
 /* Mobile */
 @media (max-width: 767px){
   .shop-home-entry{
-    padding: 0 16px 36px;
-  }
-
-  .shop-home-entry__top{
-    padding: 14px 0 22px;
-  }
-
-  .shop-home-entry__nav{
-    gap: 18px 22px;
-    justify-content: center;
-  }
-
-  .shop-home-entry__nav-link--minimal{
-    width: auto;
-    justify-content: center;
-    padding: 4px 0;
-    font-size: 1rem;
+    padding: 24px 16px 36px;
   }
 
   .shop-home-entry__sidebar{

@@ -22,16 +22,6 @@ function jtcollector_term_link($term) {
 <section class="shop-home-entry">
   <div class="shop-home-entry__inner">
 
-    <div class="shop-home-entry__top">
-    <nav class="shop-home-entry__nav shop-home-entry__nav--minimal" aria-label="Shop kategórie">
-        <a class="shop-home-entry__nav-link shop-home-entry__nav-link--minimal is-active" href="<?php echo esc_url(jtcollector_term_link($cat_hokej)); ?>">Hokej</a>
-        <a class="shop-home-entry__nav-link shop-home-entry__nav-link--minimal" href="<?php echo esc_url(jtcollector_term_link($cat_futbal)); ?>">Futbal</a>
-        <a class="shop-home-entry__nav-link shop-home-entry__nav-link--minimal" href="<?php echo esc_url(jtcollector_term_link($cat_mma)); ?>">MMA</a>
-        <a class="shop-home-entry__nav-link shop-home-entry__nav-link--minimal" href="<?php echo esc_url(jtcollector_term_link($cat_samolepky)); ?>">Samolepky</a>
-        <a class="shop-home-entry__nav-link shop-home-entry__nav-link--minimal" href="<?php echo esc_url(jtcollector_term_link($cat_bazar)); ?>">Bazár</a>
-    </nav>
-    </div>
-
     <div class="shop-home-entry__content">
       <aside class="shop-home-entry__sidebar" aria-label="Rýchla navigácia shopu">
 
