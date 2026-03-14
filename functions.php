@@ -77,4 +77,12 @@ function jtcollector_enqueue_assets(): void
 	);
 }
 
+// WOOCOMMERCE STYLE
+wp_enqueue_style(
+    'jtcollector-woocommerce',
+    get_template_directory_uri() . '/assets/css/woocommerce.css',
+    [],
+    '1.0'
+);
+
 add_action('wp_enqueue_scripts', 'jtcollector_enqueue_assets');
