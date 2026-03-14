@@ -85,4 +85,26 @@ wp_enqueue_style(
     '1.0'
 );
 
+// Shop filer widget na shop stránke, kategóriách a tagoch
+add_action('woocommerce_before_shop_loop', 'jtcollector_render_shop_filters', 5);
+
+function jtcollector_render_shop_filters() {
+    if ( ! is_shop() && ! is_product_category() && ! is_product_tag() ) {
+        return;
+    }
+
+    echo '<aside class="shop-filter">';
+    echo '<h3>Filtrovať</h3>';
+
+    if ( shortcode_exists('yith_wcan_filters') ) {
+        echo do_shortcode('[yith_wcan_filters slug="default-preset"]');
+    }
+
+    if ( class_exists('WC_Widget_Price_Filter') ) {
+        the_widget('WC_Widget_Price_Filter');
+    }
+
+    echo '</aside>';
+}
+
 add_action('wp_enqueue_scripts', 'jtcollector_enqueue_assets');
