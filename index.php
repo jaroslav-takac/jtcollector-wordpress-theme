@@ -8,6 +8,8 @@
 get_header();
 ?>
 
+<?php get_template_part('template-parts/shop-home-entry'); ?>
+
 <section class="content-area">
 	<div class="site-container">
 		<?php if (have_posts()) : ?>
