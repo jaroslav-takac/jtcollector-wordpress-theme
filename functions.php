@@ -28,6 +28,9 @@ function jtcollector_theme_setup(): void
 		'script',
 	]);
 
+	// WooCommerce support
+	add_theme_support('woocommerce');
+
 	register_nav_menus([
 		'header_about_menu' => __('Header About Menu', 'jtcollector'),
 		'header_info_menu'  => __('Header Info Menu', 'jtcollector'),
@@ -67,6 +70,14 @@ function jtcollector_enqueue_assets(): void
 		filemtime(get_template_directory() . '/assets/css/shop-home-entry.css')
 	);
 
+	// WOOCOMMERCE STYLE
+	wp_enqueue_style(
+		'jtcollector-woocommerce',
+		get_template_directory_uri() . '/assets/css/woocommerce.css',
+		['jtcollector-main-style'],
+		filemtime(get_template_directory() . '/assets/css/woocommerce.css')
+	);
+
 	// HEADER SCRIPT
 	wp_enqueue_script(
 		'jtcollector-header-script',
@@ -76,35 +87,4 @@ function jtcollector_enqueue_assets(): void
 		true
 	);
 }
-
-// WOOCOMMERCE STYLE
-wp_enqueue_style(
-    'jtcollector-woocommerce',
-    get_template_directory_uri() . '/assets/css/woocommerce.css',
-    [],
-    '1.0'
-);
-
-// Shop filer widget na shop stránke, kategóriách a tagoch
-add_action('woocommerce_before_shop_loop', 'jtcollector_render_shop_filters', 5);
-
-function jtcollector_render_shop_filters() {
-    if ( ! is_shop() && ! is_product_category() && ! is_product_tag() ) {
-        return;
-    }
-
-    echo '<aside class="shop-filter">';
-    echo '<h3>Filtrovať</h3>';
-
-    if ( shortcode_exists('yith_wcan_filters') ) {
-        echo do_shortcode('[yith_wcan_filters slug="default-preset"]');
-    }
-
-    if ( class_exists('WC_Widget_Price_Filter') ) {
-        the_widget('WC_Widget_Price_Filter');
-    }
-
-    echo '</aside>';
-}
-
 add_action('wp_enqueue_scripts', 'jtcollector_enqueue_assets');

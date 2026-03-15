@@ -2,11 +2,19 @@
    WOOCOMMERCE – product archive / grid
 ======================================== */
 
+/* spoločné cesty pre WooCommerce archívy */
+.post-type-archive-product,
+.tax-product_cat,
+.tax-product_tag {
+  --jt-shop-max: 1360px;
+  --jt-shop-gap: 32px;
+}
+
 /* hlavný wrapper sekcie */
 .post-type-archive-product .site-container,
 .tax-product_cat .site-container,
 .tax-product_tag .site-container {
-  width: min(100% - 32px, 1360px);
+  width: min(100% - var(--jt-shop-gap), var(--jt-shop-max));
   margin-inline: auto;
 }
 
@@ -16,7 +24,63 @@
 .tax-product_tag .site-main {
   max-width: 100%;
   margin: 0 auto;
+  padding: 12px 0 12px; /* medzera pod headerom / menu */
+}
+
+/* archive layout: sidebar + content */
+.shop-archive-layout {
+  display: grid;
+  grid-template-columns: 280px minmax(0, 1fr);
+  gap: 24px;
+  align-items: start;
+}
+
+/* sidebar */
+.shop-sidebar {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.shop-sidebar .entry-card,
+.shop-filter-box,
+.shop-quick-links {
+  background: #fff;
+  border: 1px solid var(--jt-line, #dbe3ee);
+  border-radius: 24px;
+  padding: 24px 20px;
+  box-shadow: 0 10px 30px rgba(15, 23, 42, 0.04);
+  box-sizing: border-box;
+}
+
+.shop-sidebar h3 {
+  margin: 0 0 14px;
+  font-size: 1.1rem;
+  line-height: 1.3;
+}
+
+.shop-quick-links ul {
+  margin: 0;
   padding: 0;
+  list-style: none;
+}
+
+.shop-quick-links li + li {
+  margin-top: 10px;
+}
+
+.shop-quick-links a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.shop-quick-links a:hover {
+  text-decoration: underline;
+}
+
+/* obsah produktov */
+.shop-archive-content {
+  min-width: 0;
 }
 
 /* veľký box sekcie */
@@ -45,14 +109,14 @@
   display: none !important;
 }
 
-/* zoznam produktov – GRID */
+/* základ gridu */
 .woocommerce ul.products {
   display: grid !important;
-  grid-template-columns: repeat(5, minmax(0, 1fr));
   gap: 18px;
   margin: 0;
   padding: 0;
   list-style: none;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
 }
 
 /* homepage – 5 produktov */
@@ -60,7 +124,7 @@
   grid-template-columns: repeat(5, minmax(0, 1fr));
 }
 
-/* archive / kategórie / tagy – 5 produktov a potom prechod na 4 produkty */
+/* archívy kategórií / tagov / shop – 4 produkty */
 .post-type-archive-product .woocommerce ul.products,
 .tax-product_cat .woocommerce ul.products,
 .tax-product_tag .woocommerce ul.products {
@@ -115,47 +179,48 @@
 
 /* tablet */
 @media (max-width: 1200px) {
-  .woocommerce ul.products,
-  .home .woocommerce ul.products,
-  .post-type-archive-product .woocommerce ul.products,
-  .tax-product_cat .woocommerce ul.products,
-  .tax-product_tag .woocommerce ul.products {
+  .shop-archive-layout {
+    grid-template-columns: 1fr;
+  }
+
+  .woocommerce ul.products {
     grid-template-columns: repeat(3, minmax(0, 1fr));
   }
 }
 
 /* menší tablet */
 @media (max-width: 900px) {
-  .woocommerce ul.products,
-  .home .woocommerce ul.products,
-  .post-type-archive-product .woocommerce ul.products,
-  .tax-product_cat .woocommerce ul.products,
-  .tax-product_tag .woocommerce ul.products {
+  .woocommerce ul.products {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 }
 
 /* mobil */
 @media (max-width: 640px) {
-  .post-type-archive-product .site-container,
-  .tax-product_cat .site-container,
-  .tax-product_tag .site-container {
-    width: min(100% - 20px, 1360px);
+  .post-type-archive-product,
+  .tax-product_cat,
+  .tax-product_tag {
+    --jt-shop-gap: 20px;
+  }
+
+  .post-type-archive-product .site-main,
+  .tax-product_cat .site-main,
+  .tax-product_tag .site-main {
+    padding: 16px 0 0;
   }
 
   .post-type-archive-product .woocommerce,
   .tax-product_cat .woocommerce,
-  .tax-product_tag .woocommerce {
+  .tax-product_tag .woocommerce,
+  .shop-sidebar .entry-card,
+  .shop-filter-box,
+  .shop-quick-links {
     padding: 20px 16px 24px;
     border-radius: 18px;
   }
 
-  .woocommerce ul.products,
-  .home .woocommerce ul.products,
-  .post-type-archive-product .woocommerce ul.products,
-  .tax-product_cat .woocommerce ul.products,
-  .tax-product_tag .woocommerce ul.products {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
+  .woocommerce ul.products {
     gap: 12px;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 }
