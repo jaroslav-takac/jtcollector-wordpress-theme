@@ -14,6 +14,62 @@ $shop_cat_bazar      = get_term_by('slug', 'bazar', 'product_cat');
 function jtcollector_header_term_link($term) {
 	return ($term && ! is_wp_error($term)) ? get_term_link($term) : '#';
 }
+
+// Funkcia na podčiarknutie aktívnej kategórie v hlavičke obchodu - podľa aktuálnej hlavnej kategórie produktu
+function jtcollector_is_shop_section_active($parent_slug) {
+	if ( ! function_exists('is_woocommerce') ) {
+		return false;
+	}
+
+	/* presná kategória alebo jej podkategórie */
+	if ( is_product_category() ) {
+		$current_term = get_queried_object();
+
+		if ( $current_term && ! is_wp_error($current_term) && ! empty($current_term->term_id) ) {
+			$ancestor_ids   = get_ancestors($current_term->term_id, 'product_cat');
+			$ancestor_slugs = [];
+
+			foreach ( $ancestor_ids as $ancestor_id ) {
+				$ancestor = get_term($ancestor_id, 'product_cat');
+				if ( $ancestor && ! is_wp_error($ancestor) ) {
+					$ancestor_slugs[] = $ancestor->slug;
+				}
+			}
+
+			if (
+				$current_term->slug === $parent_slug ||
+				in_array($parent_slug, $ancestor_slugs, true)
+			) {
+				return true;
+			}
+		}
+	}
+
+	/* samotný produkt – podľa priradených kategórií a ich rodičov */
+	if ( is_product() ) {
+		$product_id = get_the_ID();
+		$terms      = get_the_terms($product_id, 'product_cat');
+
+		if ( $terms && ! is_wp_error($terms) ) {
+			foreach ( $terms as $term ) {
+				if ( $term->slug === $parent_slug ) {
+					return true;
+				}
+
+				$ancestor_ids = get_ancestors($term->term_id, 'product_cat');
+
+				foreach ( $ancestor_ids as $ancestor_id ) {
+					$ancestor = get_term($ancestor_id, 'product_cat');
+					if ( $ancestor && ! is_wp_error($ancestor) && $ancestor->slug === $parent_slug ) {
+						return true;
+					}
+				}
+			}
+		}
+	}
+
+	return false;
+}
 ?><!doctype html>
 <html <?php language_attributes(); ?>>
 <head>
@@ -122,11 +178,11 @@ function jtcollector_header_term_link($term) {
   <div class="site-header__shop-nav-wrap">
     <div class="site-header__shop-nav-inner">
       <nav class="site-header__shop-nav" aria-label="<?php esc_attr_e('Shop menu', 'jtcollector'); ?>">
-        <a class="site-header__shop-link is-active" href="<?php echo esc_url(jtcollector_header_term_link($shop_cat_hokej)); ?>">Hokej</a>
-        <a class="site-header__shop-link" href="<?php echo esc_url(jtcollector_header_term_link($shop_cat_futbal)); ?>">Futbal</a>
-        <a class="site-header__shop-link" href="<?php echo esc_url(jtcollector_header_term_link($shop_cat_mma)); ?>">MMA</a>
-        <a class="site-header__shop-link" href="<?php echo esc_url(jtcollector_header_term_link($shop_cat_samolepky)); ?>">Samolepky</a>
-        <a class="site-header__shop-link" href="<?php echo esc_url(jtcollector_header_term_link($shop_cat_bazar)); ?>">Bazár</a>
+        <a class="site-header__shop-link<?php echo jtcollector_is_shop_section_active('hokej') ? ' is-active' : ''; ?>" href="<?php echo esc_url(jtcollector_header_term_link($shop_cat_hokej)); ?>">Hokej</a>
+        <a class="site-header__shop-link<?php echo jtcollector_is_shop_section_active('futbal') ? ' is-active' : ''; ?>" href="<?php echo esc_url(jtcollector_header_term_link($shop_cat_futbal)); ?>">Futbal</a>
+        <a class="site-header__shop-link<?php echo jtcollector_is_shop_section_active('mma') ? ' is-active' : ''; ?>" href="<?php echo esc_url(jtcollector_header_term_link($shop_cat_mma)); ?>">MMA</a>
+        <a class="site-header__shop-link<?php echo jtcollector_is_shop_section_active('samolepky') ? ' is-active' : ''; ?>" href="<?php echo esc_url(jtcollector_header_term_link($shop_cat_samolepky)); ?>">Samolepky</a>
+        <a class="site-header__shop-link<?php echo jtcollector_is_shop_section_active('bazar') ? ' is-active' : ''; ?>" href="<?php echo esc_url(jtcollector_header_term_link($shop_cat_bazar)); ?>">Bazár</a>
       </nav>
     </div>
   </div>
