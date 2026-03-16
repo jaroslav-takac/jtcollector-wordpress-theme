@@ -9,7 +9,11 @@ while ( have_posts() ) :
 endwhile;
 ?>
 
-<?php get_template_part('template-parts/shop-home-entry'); ?>
+<?php get_template_part('template-parts/home-featured-products'); ?>
+
+<div class="front-page-promo-slider">
+  <?php echo do_shortcode('[smartslider3 slider="3"]'); ?>
+</div>
 
 </main>
 

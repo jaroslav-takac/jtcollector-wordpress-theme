@@ -62,12 +62,12 @@ function jtcollector_enqueue_assets(): void
 		filemtime(get_template_directory() . '/assets/css/header.css')
 	);
 
-	// SHOP HOME ENTRY STYLE
+	// HOME FEATURED PRODUCTS STYLE
 	wp_enqueue_style(
-		'jtcollector-shop-home-entry',
-		get_template_directory_uri() . '/assets/css/shop-home-entry.css',
+		'jtcollector-home-featured-products',
+		get_template_directory_uri() . '/assets/css/home-featured-products.css',
 		['jtcollector-main-style'],
-		filemtime(get_template_directory() . '/assets/css/shop-home-entry.css')
+		filemtime(get_template_directory() . '/assets/css/home-featured-products.css')
 	);
 
 	// WOOCOMMERCE STYLE
