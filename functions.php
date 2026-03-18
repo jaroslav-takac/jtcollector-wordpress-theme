@@ -86,5 +86,13 @@ function jtcollector_enqueue_assets(): void
 		$theme_version,
 		true
 	);
+
+	// PAGE CONTENT STYLE
+	wp_enqueue_style(
+	'jtcollector-page-content',
+	get_template_directory_uri() . '/assets/css/page-content.css',
+	[],
+	wp_get_theme()->get('Version')
+);
 }
 add_action('wp_enqueue_scripts', 'jtcollector_enqueue_assets');
