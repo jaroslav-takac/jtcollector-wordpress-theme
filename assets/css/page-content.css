@@ -1,0 +1,80 @@
+/* ========================================
+   PAGE / CONTENT LAYOUT
+   Base wrapper pre statické stránky,
+   Gutenberg obsah a neskôr aj single post
+======================================== */
+
+.site-page {
+  --jt-page-max: 1360px;
+  --jt-page-gap: 32px;
+}
+
+.page-entry {
+  padding: 0px 0 0px; /* je v main.css */
+}
+
+.page-entry__inner {
+  width: min(100% - var(--jt-page-gap), var(--jt-page-max));
+  margin-inline: auto;
+}
+
+.page-entry__main {
+  width: 100%;
+  background: #fff;
+  border: 1px solid var(--jt-line, #dbe3ee);
+  border-radius: 24px;
+  padding: 28px 28px 32px;
+  box-shadow: 0 10px 30px rgba(15, 23, 42, 0.04);
+  box-sizing: border-box;
+}
+
+.page-entry__header {
+  margin-bottom: 24px;
+}
+
+.page-entry__title {
+  margin: 0;
+  font-size: clamp(1.9rem, 3vw, 3rem);
+  line-height: 1.08;
+  font-weight: 800;
+  color: var(--jt-ink, #0f172a);
+}
+
+.page-entry__content {
+  min-width: 0;
+}
+
+.page-entry__content > *:first-child {
+  margin-top: 0;
+}
+
+.page-entry__content > *:last-child {
+  margin-bottom: 0;
+}
+
+/* tablet */
+@media (max-width: 900px) {
+  .page-entry__main {
+    padding: 24px 22px 28px;
+  }
+}
+
+/* mobil */
+@media (max-width: 640px) {
+  .site-page {
+    --jt-page-gap: 20px;
+  }
+
+  .page-entry {
+    padding: 20px 0 24px;
+  }
+
+  .page-entry__main {
+    padding: 20px 16px 24px;
+    border-radius: 18px;
+  }
+
+  .page-entry__title {
+    font-size: 2rem;
+  }
+}
