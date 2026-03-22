@@ -62,6 +62,14 @@ function jtcollector_enqueue_assets(): void
 		filemtime(get_template_directory() . '/assets/css/header.css')
 	);
 
+	// FOOTER STYLE
+	wp_enqueue_style(
+		'jt-footer-style',
+		get_template_directory_uri() . '/assets/css/footer.css',
+		[],
+		'1.0'
+	);
+
 	// HOME FEATURED PRODUCTS STYLE
 	wp_enqueue_style(
 		'jtcollector-home-featured-products',
@@ -95,4 +103,16 @@ function jtcollector_enqueue_assets(): void
 	wp_get_theme()->get('Version')
 );
 }
+
+// Register navigation menus
+function jtcollector_register_menus() {
+	register_nav_menus(
+		[
+			'primary' => __('Primary Menu', 'jtcollector'),
+			'footer'  => __('Footer Menu', 'jtcollector'),
+		]
+	);
+}
+add_action('after_setup_theme', 'jtcollector_register_menus');
+
 add_action('wp_enqueue_scripts', 'jtcollector_enqueue_assets');
