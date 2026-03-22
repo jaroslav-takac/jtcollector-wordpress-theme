@@ -1,6 +1,7 @@
 <?php
 /**
  * Custom WooCommerce archive template
+ * (pre stránky kategórií HOKEJ/FUTBAL/MMA...)
  *
  * @package JTCollector
  */
