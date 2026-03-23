@@ -1,6 +1,6 @@
 <?php
 /**
- * Blog - Archive template
+ * Blog - Posts page template
  *
  * @package JTCollector
  */
@@ -17,8 +17,16 @@ get_header();
 
 				<header class="page-entry__header archive-entry__header">
 					<h1 class="page-entry__title archive-entry__title">
-						<?php the_archive_title(); ?>
+						Všetky články
 					</h1>
+
+					<div class="archive-entry__intro page-entry__content">
+						<p>
+							Nájdete tu články zo zberateľského sveta, moje postrehy, rady pre nových aj skúsenejších zberateľov
+							a množstvo zaujímavostí zo zákulisia zberateľstva. Čítajte, vzdelávajte sa a nechajte sa inšpirovať
+							na vlastnej zberateľskej ceste.
+						</p>
+					</div>
 				</header>
 
 				<?php if (have_posts()) : ?>
