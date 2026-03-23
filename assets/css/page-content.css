@@ -250,7 +250,6 @@
 .archive-card__link:hover,
 .archive-card__link:focus-visible {
   opacity: 0.94;
-  transform: translateY(-1px);
   color: #fff;
 }
 
