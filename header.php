@@ -191,13 +191,19 @@ if (is_home() || is_category() || is_singular('post')) {
 					<button class="site-header__utility" type="button">SK</button>
 				</div>
 
-				<div class="site-header__shop-bottom">
-					<a href="#" class="site-header__account">Prihlásenie</a>
-					<a href="#" class="site-header__cart">
-						<span class="site-header__cart-icon">🛒</span>
-						<span class="site-header__cart-text">0 ks / 0 €</span>
-					</a>
-				</div>
+        <div class="site-header__shop-bottom">
+          <a href="<?php echo esc_url(get_permalink(get_option('woocommerce_myaccount_page_id'))); ?>" class="site-header__account">
+            <?php echo is_user_logged_in() ? 'Môj účet' : 'Prihlásenie'; ?>
+          </a>
+
+          <a href="<?php echo esc_url(wc_get_cart_url()); ?>" class="site-header__cart">
+            <span class="site-header__cart-icon">🛒</span>
+            <span class="site-header__cart-text js-header-cart-text">
+              <?php echo WC()->cart->get_cart_contents_count(); ?> ks /
+              <?php echo wp_kses_post(WC()->cart->get_cart_total()); ?>
+            </span>
+          </a>
+        </div>
 			</div>
 
 		</div>

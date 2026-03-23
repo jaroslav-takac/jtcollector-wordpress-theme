@@ -107,3 +107,20 @@ function jtcollector_enqueue_assets(): void
 	);
 }
 add_action('wp_enqueue_scripts', 'jtcollector_enqueue_assets');
+
+/**
+ * AJAX refresh header cart contents
+ */
+function jtcollector_header_cart_fragment($fragments) {
+	ob_start();
+	?>
+	<span class="site-header__cart-text js-header-cart-text">
+		<?php echo WC()->cart->get_cart_contents_count(); ?> ks /
+		<?php echo wp_kses_post(WC()->cart->get_cart_total()); ?>
+	</span>
+	<?php
+	$fragments['.js-header-cart-text'] = ob_get_clean();
+
+	return $fragments;
+}
+add_filter('woocommerce_add_to_cart_fragments', 'jtcollector_header_cart_fragment');

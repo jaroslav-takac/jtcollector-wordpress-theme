@@ -21,7 +21,7 @@
   margin:0 auto;
   padding:0 20px;
   display:grid;
-  grid-template-columns:240px 1fr 240px;
+  grid-template-columns:240px 1fr auto;
   gap:20px;
   align-items:stretch;
 }
@@ -213,6 +213,39 @@
 }
 
 /* =========================
+   HEADER - WC HOVER FIX
+   ========================= */
+
+.site-header__account,
+.site-header__cart{
+  position: relative;
+  padding: 6px 10px;
+  border-radius: 8px;
+  transition: all .2s ease;
+}
+
+/* HOVER efekt */
+.site-header__account:hover,
+.site-header__cart:hover{
+  background: rgba(147, 197, 253, 0.25); /* svetlá modrá */
+  color: #ffffff;
+}
+
+/* aby sa nezmenila farba linku */
+.site-header__account:hover{
+  text-decoration: none;
+}
+
+.site-header__cart:hover{
+  text-decoration: none;
+}
+
+.site-header__shop-bottom{
+  position: relative;
+  top: -7px;
+}
+
+/* =========================
    SHOP BLOCK
    ========================= */
 
@@ -222,6 +255,7 @@
   justify-content:space-between;
   align-items:flex-end;
   padding:10px 0;
+  margin-right: -20px;
 }
 
 .site-header__shop-top{
