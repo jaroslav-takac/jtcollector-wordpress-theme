@@ -1,7 +1,7 @@
 /* ========================================
    PAGE / CONTENT LAYOUT
    Base wrapper pre statické stránky,
-   Gutenberg obsah a single post
+   Gutenberg obsah, single post a archive
 ======================================== */
 
 .site-page {
@@ -126,9 +126,169 @@
   object-fit: cover;
 }
 
-/* obsah článku */
 .single-entry__content {
   min-width: 0;
+}
+
+/* ========================================
+   ARCHIVE / CATEGORY
+======================================== */
+
+.archive-entry__header {
+  margin-bottom: 12px;
+}
+
+.archive-entry__title {
+  margin-bottom: 16px;
+}
+
+.archive-entry__intro {
+  max-width: 1000px;
+  margin-bottom: 8px;
+}
+
+.archive-list {
+  margin-top: 8px;
+}
+
+.archive-card {
+  display: grid;
+  grid-template-columns: minmax(220px, 32%) minmax(0, 1fr);
+  gap: 28px;
+  align-items: start;
+  padding: 28px 0;
+}
+
+.archive-card + .archive-card {
+  border-top: 2px solid #d9e9fb;
+}
+
+.archive-card__media {
+  display: block;
+  text-decoration: none;
+}
+
+.archive-card__image {
+  display: block;
+  width: 100%;
+  aspect-ratio: 16 / 10;
+  object-fit: cover;
+  border-radius: 12px;
+  background: #f8fafc;
+}
+
+.archive-card__image--placeholder {
+  border: 1px solid var(--jt-line, #dbe3ee);
+}
+
+.archive-card__content {
+  min-width: 0;
+  padding-top: 4px;
+}
+
+.archive-card__title {
+  margin: 0 0 14px;
+  font-size: clamp(1.55rem, 2.2vw, 2.35rem);
+  line-height: 1.15;
+  font-weight: 800;
+}
+
+.archive-card__title a {
+  color: var(--jt-ink, #0f172a);
+  text-decoration: none;
+}
+
+.archive-card__title a:hover,
+.archive-card__title a:focus-visible {
+  color: var(--jt-primary-dark, #1e3a8a);
+}
+
+.archive-card__meta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 16px;
+  font-size: 1rem;
+  line-height: 1.4;
+  color: var(--jt-muted, #6b7280);
+}
+
+.archive-card__meta-item {
+  color: var(--jt-muted, #6b7280);
+}
+
+.archive-card__meta-separator {
+  color: #94a3b8;
+}
+
+.archive-card__excerpt {
+  font-size: 1.08rem;
+  line-height: 1.7;
+  margin-bottom: 18px;
+}
+
+.archive-card__excerpt p {
+  margin: 0;
+}
+
+.archive-card__link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 46px;
+  padding: 0 22px;
+  border-radius: 999px;
+  background: linear-gradient(135deg, #3095e8 0%, #194b9b 100%);
+  color: #fff;
+  font-size: 1rem;
+  font-weight: 700;
+  text-decoration: none;
+  transition: transform 0.2s ease, opacity 0.2s ease;
+}
+
+.archive-card__link:hover,
+.archive-card__link:focus-visible {
+  opacity: 0.94;
+  transform: translateY(-1px);
+  color: #fff;
+}
+
+.archive-entry__empty {
+  padding: 12px 0 4px;
+}
+
+.navigation.pagination {
+  margin-top: 8px;
+  padding-top: 24px;
+  border-top: 2px solid #d9e9fb;
+}
+
+.navigation.pagination .nav-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.navigation.pagination .page-numbers {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 44px;
+  min-height: 44px;
+  padding: 0 14px;
+  border: 1px solid var(--jt-line, #dbe3ee);
+  border-radius: 999px;
+  background: #fff;
+  color: var(--jt-ink, #0f172a);
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.navigation.pagination .page-numbers.current {
+  background: var(--jt-primary, #1d4ed8);
+  border-color: var(--jt-primary, #1d4ed8);
+  color: #fff;
 }
 
 /* tablet */
@@ -145,6 +305,15 @@
     flex: none;
     max-width: 100%;
     width: 100%;
+  }
+
+  .archive-card {
+    grid-template-columns: 1fr;
+    gap: 18px;
+  }
+
+  .archive-card__image {
+    aspect-ratio: 16 / 9;
   }
 }
 
@@ -188,5 +357,29 @@
 
   .single-entry__image {
     border-radius: 16px;
+  }
+
+  .archive-card {
+    padding: 22px 0;
+  }
+
+  .archive-card__title {
+    font-size: 1.7rem;
+  }
+
+  .archive-card__meta {
+    gap: 8px;
+    margin-bottom: 14px;
+    font-size: 0.95rem;
+  }
+
+  .archive-card__excerpt {
+    font-size: 1rem;
+    line-height: 1.65;
+    margin-bottom: 16px;
+  }
+
+  .archive-card__link {
+    width: 100%;
   }
 }
