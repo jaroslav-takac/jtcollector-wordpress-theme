@@ -6,14 +6,14 @@
   background:#5f6972;
   color:#fff;
   border-bottom:1px solid rgba(0,0,0,.15);
-  box-shadow: 0 4px 12px rgba(0,0,0,0.12); /* Tieň pod headrom */
+  box-shadow:0 4px 12px rgba(0,0,0,0.12);
 }
 
 .site-header__top{
-  background-image: url("../images/background.jpeg");
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
+  background-image:url("../images/background.jpeg");
+  background-size:cover;
+  background-position:center;
+  background-repeat:no-repeat;
 }
 
 .site-header__inner{
@@ -108,12 +108,15 @@
   background:rgba(255,255,255,.12);
   backdrop-filter:blur(0px);
   border-radius:0 0 12px 12px;
-  padding:16px 18px;
+  padding:14px 18px;
   min-height:72px;
+  display:flex;
+  align-items:center;
 }
 
 .site-header__panel-content{
   display:none;
+  width:100%;
 }
 
 .site-header__panel-content.is-active{
@@ -129,25 +132,45 @@
   margin:0;
   padding:0;
   display:flex;
-  flex-wrap:wrap;
-  gap:24px;
+  flex-wrap:nowrap;
+  justify-content:space-between;
   align-items:center;
+  width:100%;
+  gap:16px;
 }
 
 .header-panel-menu li{
   margin:0;
   padding:0;
+  flex:1 1 0;
+  text-align:center;
 }
 
 .header-panel-menu li a{
+  display:block;
+  width:100%;
   color:#fff;
   text-decoration:none;
-  font-weight:500;
+  font-weight:700;
   font-size:15px;
+  line-height:1.2;
+  padding:10px 8px;
+  border-radius:10px;
+  transition:background .2s ease, opacity .2s ease;
+  white-space: nowrap;
 }
 
-.header-panel-menu li a:hover{
-  text-decoration:underline;
+.header-panel-menu li a:hover,
+.header-panel-menu li a:focus-visible{
+  background:rgba(255,255,255,.08);
+  color:#fff;
+}
+
+.header-panel-menu .current-menu-item a,
+.header-panel-menu .current-menu-parent a,
+.header-panel-menu .current-category-ancestor a{
+  background:rgba(255,255,255,.12);
+  color:#fff;
 }
 
 /* =========================
@@ -156,18 +179,21 @@
 
 .header-search-form{
   display:flex;
-  gap:10px;
   align-items:center;
+  gap:12px;
+  width:100%;
 }
 
 .header-search-form__input{
   flex:1;
   min-width:0;
   height:42px;
+  line-height:42px;
   border:none;
   border-radius:6px;
   padding:0 14px;
   font-size:15px;
+  box-sizing:border-box;
 }
 
 .header-search-form__button{
@@ -179,6 +205,7 @@
   background:#2f3439;
   color:#fff;
   cursor:pointer;
+  box-sizing:border-box;
 }
 
 .header-search-form__button:hover{
@@ -338,8 +365,18 @@
     min-height:52px;
   }
 
+  .site-header__panel{
+    min-height:auto;
+  }
+
   .header-panel-menu{
-    gap:14px 18px;
+    flex-wrap:wrap;
+    gap:12px;
+  }
+
+  .header-panel-menu li{
+    flex:1 1 calc(50% - 12px);
+    text-align:center;
   }
 
   .header-search-form{
