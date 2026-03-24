@@ -105,6 +105,14 @@ function jtcollector_enqueue_assets(): void
 		filemtime(get_template_directory() . '/assets/js/header.js'),
 		true
 	);
+
+	// HOME BLOG STYLE
+	wp_enqueue_style(
+	'jtcollector-home-blog',
+	get_template_directory_uri() . '/assets/css/home-blog.css',
+	[],
+	wp_get_theme()->get('Version')
+);
 }
 add_action('wp_enqueue_scripts', 'jtcollector_enqueue_assets');
 

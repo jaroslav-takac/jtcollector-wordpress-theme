@@ -24,10 +24,10 @@
 .tax-product_tag .site-main {
   max-width: 100%;
   margin: 0 auto;
-  padding: 12px 0 12px; /* medzera pod headerom / menu */
+  padding: 12px 0 24px;
 }
 
-/* archive layout: sidebar + content */
+/* archive layout */
 .shop-archive-layout {
   display: grid;
   grid-template-columns: 280px minmax(0, 1fr);
@@ -78,12 +78,12 @@
   text-decoration: underline;
 }
 
-/* obsah produktov */
+/* content */
 .shop-archive-content {
   min-width: 0;
 }
 
-/* veľký box sekcie */
+/* hlavný box */
 .post-type-archive-product .woocommerce,
 .tax-product_cat .woocommerce,
 .tax-product_tag .woocommerce {
@@ -96,31 +96,26 @@
   box-sizing: border-box;
 }
 
-/* výsledky a zoradenie */
+/* toolbar */
 .woocommerce .woocommerce-result-count,
 .woocommerce .woocommerce-ordering {
   margin-bottom: 18px;
 }
 
-/* WooCommerce clearfix pseudo-elementy nesmú vstupovať do gridu */
+/* reset clearfix */
 .woocommerce ul.products::before,
 .woocommerce ul.products::after {
   content: none !important;
   display: none !important;
 }
 
-/* základ gridu */
+/* GRID */
 .woocommerce ul.products {
   display: grid !important;
   gap: 18px;
   margin: 0;
   padding: 0;
   list-style: none;
-  grid-template-columns: repeat(5, minmax(0, 1fr));
-}
-
-/* homepage – 5 produktov */
-.home .woocommerce ul.products {
   grid-template-columns: repeat(5, minmax(0, 1fr));
 }
 
@@ -131,24 +126,46 @@
   grid-template-columns: repeat(4, minmax(0, 1fr));
 }
 
-/* product card */
+/* PRODUCT CARD */
 .woocommerce ul.products li.product {
   width: auto !important;
   margin: 0 !important;
+  padding: 0 !important;
   float: none !important;
   display: flex;
   flex-direction: column;
   min-width: 0;
 }
 
-/* obrázok – štvorcový box */
+/* odstránenie default Woo spacing */
+.woocommerce ul.products li.product a,
+.woocommerce ul.products li.product img,
+.woocommerce ul.products li.product h2,
+.woocommerce ul.products li.product .price {
+  margin-top: 0;
+}
+
+/* LINK = obrázok + názov */
+.woocommerce ul.products li.product > a.woocommerce-LoopProduct-link,
+.woocommerce ul.products li.product > a.woocommerce-loop-product__link {
+  display: block;
+  text-decoration: none;
+  color: inherit;
+  min-width: 0;
+  margin: 0;
+  padding: 0;
+}
+
+/* IMAGE */
+.woocommerce ul.products li.product > a.woocommerce-LoopProduct-link img,
+.woocommerce ul.products li.product > a.woocommerce-loop-product__link img,
 .woocommerce ul.products li.product img {
   display: block;
   width: 100%;
   aspect-ratio: 1 / 1;
   object-fit: contain;
   object-position: center;
-  margin: 0 0 12px;
+  margin: 0 0 12px !important;
   padding: 10px;
   background: #f8fafc;
   border: 1px solid #d9e2ec;
@@ -156,46 +173,159 @@
   box-sizing: border-box;
 }
 
-/* názov */
+/* TITLE */
 .woocommerce ul.products li.product .woocommerce-loop-product__title {
-  margin: 0 0 8px;
+  display: block;
+  margin: 0 0 10px !important;
+  padding: 0 !important;
   font-size: 1rem;
   line-height: 1.35;
+  font-weight: 700;
+  color: var(--jt-ink, #0f172a) !important;
+  min-height: calc(1.35em * 3);
 }
 
-/* cena */
-.woocommerce ul.products li.product .price {
+.woocommerce ul.products li.product > a.woocommerce-LoopProduct-link:hover .woocommerce-loop-product__title,
+.woocommerce ul.products li.product > a.woocommerce-LoopProduct-link:focus-visible .woocommerce-loop-product__title,
+.woocommerce ul.products li.product > a.woocommerce-loop-product__link:hover .woocommerce-loop-product__title,
+.woocommerce ul.products li.product > a.woocommerce-loop-product__link:focus-visible .woocommerce-loop-product__title {
+  color: var(--jt-primary-dark, #1e3a8a) !important;
+}
+
+/* PRICE + STOCK WRAPPER */
+.woocommerce ul.products li.product .jt-product-card__price-stock {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 10px;
+  width: 100%;
   margin: 0 0 10px;
-  font-size: 1rem;
+  padding: 0 10px;
+  box-sizing: border-box;
+}
+
+/* STOCK = vľavo */
+.woocommerce ul.products li.product .jt-product-card__price-stock .jt-stock-inline,
+.woocommerce ul.products li.product .jt-stock-inline {
+  order: 1;
+  display: inline-flex;
+  align-items: center;
+  justify-content: flex-start;
+  margin: 0;
+  font-size: 0.9rem;
+  font-weight: 400;
+  line-height: 1.2;
+  color: #16a34a !important;
+  white-space: nowrap;
+}
+
+/* PRICE = vpravo */
+.woocommerce ul.products li.product .jt-product-card__price-stock .price {
+  order: 2;
+  margin: 0 0 0 auto !important;
+  padding: 0 !important;
+  font-size: 1.1rem;
   font-weight: 600;
+  line-height: 1.2;
+  text-align: right;
 }
 
-/* tlačidlo */
-.woocommerce ul.products li.product .button {
+.woocommerce ul.products li.product .jt-product-card__price-stock .price,
+.woocommerce ul.products li.product .jt-product-card__price-stock .price span,
+.woocommerce ul.products li.product .jt-product-card__price-stock .price bdi,
+.woocommerce ul.products li.product .price,
+.woocommerce ul.products li.product .price span,
+.woocommerce ul.products li.product .price bdi {
+  color: #3095e8 !important;
+}
+
+/* BUTTON */
+.woocommerce ul.products li.product > .button,
+.woocommerce ul.products li.product > a.button,
+.woocommerce ul.products li.product > .add_to_cart_button,
+.woocommerce ul.products li.product > .ajax_add_to_cart,
+.woocommerce ul.products li.product .button,
+.woocommerce ul.products li.product a.button,
+.woocommerce ul.products li.product .add_to_cart_button,
+.woocommerce ul.products li.product .ajax_add_to_cart {
+  display: inline-flex !important;
+  align-items: center;
+  justify-content: center;
+  align-self: center;
+  width: auto !important;
+  min-width: 0;
+  max-width: 100%;
+  height: 36px;
+  min-height: 36px;
   margin-top: auto;
-  min-height: 42px;
-  border-radius: 10px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: -2px;
+  padding: 0 14px !important;
+  border: 0;
+  border-radius: 999px;
+  background: linear-gradient(135deg, #3095e8 0%, #194b9b 100%) !important;
+  color: #fff !important;
+  font-size: 0.88rem;
+  font-weight: 700;
+  line-height: 1;
+  text-decoration: none !important;
+  white-space: nowrap;
+  box-shadow: 0 2px 6px rgba(29, 78, 216, 0.12);
+  transition: opacity 0.2s ease, box-shadow 0.2s ease;
+  box-sizing: border-box;
 }
 
-/* tablet */
+.woocommerce ul.products li.product > .button:hover,
+.woocommerce ul.products li.product > .button:focus-visible,
+.woocommerce ul.products li.product > a.button:hover,
+.woocommerce ul.products li.product > a.button:focus-visible,
+.woocommerce ul.products li.product > .add_to_cart_button:hover,
+.woocommerce ul.products li.product > .add_to_cart_button:focus-visible,
+.woocommerce ul.products li.product > .ajax_add_to_cart:hover,
+.woocommerce ul.products li.product > .ajax_add_to_cart:focus-visible,
+.woocommerce ul.products li.product .button:hover,
+.woocommerce ul.products li.product .button:focus-visible,
+.woocommerce ul.products li.product a.button:hover,
+.woocommerce ul.products li.product a.button:focus-visible,
+.woocommerce ul.products li.product .add_to_cart_button:hover,
+.woocommerce ul.products li.product .add_to_cart_button:focus-visible,
+.woocommerce ul.products li.product .ajax_add_to_cart:hover,
+.woocommerce ul.products li.product .ajax_add_to_cart:focus-visible {
+  color: #fff !important;
+  opacity: 0.96;
+  box-shadow: 0 3px 8px rgba(29, 78, 216, 0.16);
+}
+
+.woocommerce ul.products li.product .added_to_cart {
+  display: none !important;
+}
+
+/* TABLET */
 @media (max-width: 1200px) {
   .shop-archive-layout {
     grid-template-columns: 1fr;
   }
 
-  .woocommerce ul.products {
+  .woocommerce ul.products,
+  .post-type-archive-product .woocommerce ul.products,
+  .tax-product_cat .woocommerce ul.products,
+  .tax-product_tag .woocommerce ul.products {
     grid-template-columns: repeat(3, minmax(0, 1fr));
   }
 }
 
-/* menší tablet */
+/* MENŠÍ TABLET */
 @media (max-width: 900px) {
-  .woocommerce ul.products {
+  .woocommerce ul.products,
+  .post-type-archive-product .woocommerce ul.products,
+  .tax-product_cat .woocommerce ul.products,
+  .tax-product_tag .woocommerce ul.products {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 }
 
-/* mobil */
+/* MOBILE */
 @media (max-width: 640px) {
   .post-type-archive-product,
   .tax-product_cat,
@@ -206,7 +336,7 @@
   .post-type-archive-product .site-main,
   .tax-product_cat .site-main,
   .tax-product_tag .site-main {
-    padding: 16px 0 0;
+    padding: 20px 0 24px;
   }
 
   .post-type-archive-product .woocommerce,
@@ -219,8 +349,23 @@
     border-radius: 18px;
   }
 
-  .woocommerce ul.products {
+  .woocommerce ul.products,
+  .post-type-archive-product .woocommerce ul.products,
+  .tax-product_cat .woocommerce ul.products,
+  .tax-product_tag .woocommerce ul.products {
     gap: 12px;
     grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .woocommerce ul.products li.product .woocommerce-loop-product__title {
+    min-height: 0;
+  }
+
+  .woocommerce ul.products li.product .jt-product-card__price-stock {
+    gap: 8px;
+  }
+
+  .woocommerce ul.products li.product .jt-stock-inline {
+    font-size: 0.84rem;
   }
 }

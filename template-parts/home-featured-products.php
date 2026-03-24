@@ -1,9 +1,10 @@
 <?php
 /**
  * Template part for displaying featured products on the homepage.
- * (pre zobrazenie vybraných produktov na homepage)
+ *
  * @package JTCollector
  */
+
 $featured_args = array(
   'post_type'           => 'product',
   'post_status'         => 'publish',
@@ -29,12 +30,12 @@ $featured_query = new WP_Query($featured_args);
 
       <header class="shop-home-entry__header">
         <div class="shop-home-entry__heading">
-          <p class="shop-home-entry__subtitle">  </p>  <!-- Prázdný element pre TITULOK na ďalšie použitie -->
-          <h2 class="shop-home-entry__title">HITY z našej ponuky</h2>
+          <p class="shop-home-entry__subtitle"></p>
+          <h2 class="shop-home-entry__title">TOP karty z ponuky</h2>
         </div>
 
         <a class="shop-home-entry__button" href="<?php echo esc_url(get_permalink(wc_get_page_id('shop'))); ?>">
-          Pozrieť ďalšie HITY
+          Pozrieť ďalšie TOP karty
         </a>
       </header>
 
@@ -42,7 +43,39 @@ $featured_query = new WP_Query($featured_args);
         <div class="shop-home-entry__products">
           <ul class="products columns-6">
             <?php while ($featured_query->have_posts()) : $featured_query->the_post(); ?>
-              <?php wc_get_template_part('content', 'product'); ?>
+              <?php
+              global $product;
+
+              if (!$product || !is_a($product, 'WC_Product')) {
+                continue;
+              }
+
+              $stock_quantity = $product->get_stock_quantity();
+              $show_stock = $product->managing_stock() && $stock_quantity !== null && $stock_quantity > 0;
+              ?>
+              <li <?php wc_product_class('', $product); ?>>
+
+                <a href="<?php the_permalink(); ?>" class="woocommerce-LoopProduct-link woocommerce-loop-product__link">
+                  <?php
+                  if (has_post_thumbnail()) {
+                    echo woocommerce_get_product_thumbnail();
+                  }
+                  ?>
+                  <h3 class="woocommerce-loop-product__title"><?php the_title(); ?></h3>
+                </a>
+
+                <div class="jt-home-product__price-row">
+                  <?php if ($show_stock) : ?>
+                    <span class="jt-stock-inline">Skladom <?php echo esc_html($stock_quantity); ?> ks</span>
+                  <?php endif; ?>
+
+                  <?php if ($price_html = $product->get_price_html()) : ?>
+                    <span class="price"><?php echo wp_kses_post($price_html); ?></span>
+                  <?php endif; ?>
+                </div>
+
+                <?php woocommerce_template_loop_add_to_cart(); ?>
+              </li>
             <?php endwhile; ?>
           </ul>
         </div>
