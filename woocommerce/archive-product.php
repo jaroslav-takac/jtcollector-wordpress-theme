@@ -9,6 +9,59 @@
 defined('ABSPATH') || exit;
 
 get_header();
+
+/**
+ * Otvorí wrapper pre sklad + cenu.
+ */
+if (!function_exists('jtcollector_archive_price_stock_wrap_open')) {
+	function jtcollector_archive_price_stock_wrap_open() {
+		echo '<div class="jt-product-card__price-stock">';
+	}
+}
+
+/**
+ * Zobrazí text "Skladom X ks" pred cenou produktu v archívnom výpise.
+ */
+if (!function_exists('jtcollector_archive_product_stock_inline')) {
+	function jtcollector_archive_product_stock_inline() {
+		global $product;
+
+		if (!$product || !is_a($product, 'WC_Product')) {
+			return;
+		}
+
+		$stock_quantity = $product->get_stock_quantity();
+
+		if ($product->managing_stock() && $stock_quantity !== null && $stock_quantity > 0) {
+			echo '<span class="jt-stock-inline">Skladom ' . esc_html($stock_quantity) . ' ks</span>';
+		}
+	}
+}
+
+/**
+ * Zavrie wrapper pre sklad + cenu.
+ */
+if (!function_exists('jtcollector_archive_price_stock_wrap_close')) {
+	function jtcollector_archive_price_stock_wrap_close() {
+		echo '</div>';
+	}
+}
+
+/*
+ * Default WooCommerce:
+ * woocommerce_template_loop_price = priority 10
+ *
+ * Chceme:
+ * 9  -> otvor wrapper
+ * 10 -> sklad
+ * 11 -> cena
+ * 12 -> zavrieť wrapper
+ */
+remove_action('woocommerce_after_shop_loop_item_title', 'woocommerce_template_loop_price', 10);
+add_action('woocommerce_after_shop_loop_item_title', 'jtcollector_archive_price_stock_wrap_open', 9);
+add_action('woocommerce_after_shop_loop_item_title', 'jtcollector_archive_product_stock_inline', 10);
+add_action('woocommerce_after_shop_loop_item_title', 'woocommerce_template_loop_price', 11);
+add_action('woocommerce_after_shop_loop_item_title', 'jtcollector_archive_price_stock_wrap_close', 12);
 ?>
 
 <main class="site-main shop-archive-page">
@@ -91,4 +144,10 @@ get_header();
 </main>
 
 <?php
+remove_action('woocommerce_after_shop_loop_item_title', 'jtcollector_archive_price_stock_wrap_open', 9);
+remove_action('woocommerce_after_shop_loop_item_title', 'jtcollector_archive_product_stock_inline', 10);
+remove_action('woocommerce_after_shop_loop_item_title', 'woocommerce_template_loop_price', 11);
+remove_action('woocommerce_after_shop_loop_item_title', 'jtcollector_archive_price_stock_wrap_close', 12);
+add_action('woocommerce_after_shop_loop_item_title', 'woocommerce_template_loop_price', 10);
+
 get_footer();
