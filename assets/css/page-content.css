@@ -10,7 +10,7 @@
 }
 
 .page-entry {
-  padding: 0; /* vertikálny spacing je v main.css */
+  padding: 0;
 }
 
 .page-entry__inner {
@@ -232,27 +232,6 @@
   margin: 0;
 }
 
-.archive-card__link {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  min-height: 46px;
-  padding: 0 22px;
-  border-radius: 999px;
-  background: linear-gradient(135deg, #3095e8 0%, #194b9b 100%);
-  color: #fff;
-  font-size: 1rem;
-  font-weight: 700;
-  text-decoration: none;
-  transition: transform 0.2s ease, opacity 0.2s ease;
-}
-
-.archive-card__link:hover,
-.archive-card__link:focus-visible {
-  opacity: 0.94;
-  color: #fff;
-}
-
 .archive-entry__empty {
   padding: 12px 0 4px;
 }
@@ -290,7 +269,116 @@
   color: #fff;
 }
 
-/* tablet */
+/* ========================================
+   SHARED CTA BUTTONS
+   kompaktnejsie, bez pohybu, sirka podla textu
+======================================== */
+
+.jt-button,
+.archive-card__link,
+.home-blog-card .jt-button,
+.woocommerce ul.products li.product .button,
+.woocommerce a.button,
+.woocommerce button.button,
+.woocommerce input.button,
+.woocommerce #respond input#submit,
+.woocommerce a.button.alt,
+.woocommerce button.button.alt,
+.woocommerce input.button.alt,
+.woocommerce #respond input#submit.alt {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: auto;
+  min-width: 0;
+  height: 36px;
+  min-height: 36px;
+  padding: 0 14px;
+  border: 0;
+  border-radius: 999px;
+  background: linear-gradient(135deg, #3095e8 0%, #194b9b 100%);
+  color: #fff !important;
+  font-size: 0.88rem;
+  font-weight: 700;
+  line-height: 1;
+  text-decoration: none;
+  text-align: center;
+  white-space: nowrap;
+  box-shadow: 0 2px 6px rgba(29, 78, 216, 0.12);
+  transition: background 0.2s ease, box-shadow 0.2s ease, opacity 0.2s ease;
+  cursor: pointer;
+  box-sizing: border-box;
+}
+
+.jt-button:hover,
+.jt-button:focus-visible,
+.archive-card__link:hover,
+.archive-card__link:focus-visible,
+.home-blog-card .jt-button:hover,
+.home-blog-card .jt-button:focus-visible,
+.woocommerce ul.products li.product .button:hover,
+.woocommerce ul.products li.product .button:focus-visible,
+.woocommerce a.button:hover,
+.woocommerce a.button:focus-visible,
+.woocommerce button.button:hover,
+.woocommerce button.button:focus-visible,
+.woocommerce input.button:hover,
+.woocommerce input.button:focus-visible,
+.woocommerce #respond input#submit:hover,
+.woocommerce #respond input#submit:focus-visible {
+  color: #fff !important;
+  box-shadow: 0 3px 8px rgba(29, 78, 216, 0.16);
+  opacity: 0.96;
+}
+
+.woocommerce a.button.disabled,
+.woocommerce a.button:disabled,
+.woocommerce button.button:disabled,
+.woocommerce input.button:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+  box-shadow: none;
+}
+
+/* archív – trošku vzduchu pod textom */
+.archive-card__link {
+  padding-inline: 16px;
+}
+
+/* blog sekcia na homepage – button iba mierne sirsi ako text */
+.home-blog-card .jt-button {
+  align-self: center;
+  width: auto;
+  min-width: 0;
+  padding-inline: 24px;
+}
+
+/* footer button v blog sekcii */
+.home-blog__footer .jt-button {
+  width: auto;
+  padding-inline: 18px;
+}
+
+/* produkty – zjednotit Woo tlacidla, ale nie cez celu sirku */
+.shop-home-entry ul.products li.product .button,
+.woocommerce ul.products li.product .button {
+  width: auto;
+  max-width: 100%;
+  margin-top: auto;
+  padding-inline: 14px;
+}
+
+/* ak je niekde wrapper centrovany, button ostane pekne kompaktny */
+.woocommerce ul.products li.product .button.added,
+.woocommerce ul.products li.product .button.loading {
+  width: auto;
+  padding-inline: 14px;
+}
+
+/* ========================================
+   TABLET
+======================================== */
+
 @media (max-width: 900px) {
   .page-entry__main {
     padding: 24px 22px 28px;
@@ -316,7 +404,10 @@
   }
 }
 
-/* mobil */
+/* ========================================
+   MOBILE
+======================================== */
+
 @media (max-width: 640px) {
   .site-page {
     --jt-page-gap: 20px;
@@ -379,6 +470,17 @@
   }
 
   .archive-card__link {
-    width: 100%;
+    width: auto;
+  }
+
+  .home-blog-card__title {
+    font-size: 0.96rem;
+    min-height: auto;
+  }
+
+  .home-blog-card .jt-button,
+  .home-blog__footer .jt-button {
+    width: auto;
+    max-width: 100%;
   }
 }

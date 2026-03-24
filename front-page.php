@@ -4,12 +4,14 @@
 
 <?php
 while ( have_posts() ) :
-    the_post();
-    the_content();
+	the_post();
+	the_content();
 endwhile;
 ?>
 
 <?php get_template_part('template-parts/home-featured-products'); ?>
+
+<?php get_template_part('template-parts/home-blog'); ?>
 
 <div class="front-page-promo-slider">
   <?php echo do_shortcode('[smartslider3 slider="3"]'); ?>

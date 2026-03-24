@@ -62,23 +62,25 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  min-height: 52px;
-  padding: 0 24px;
+  min-height: 44px;
+  padding: 0 20px;
   border-radius: 999px;
-  background: var(--jt-accent, #d91c1c);
+  background: var(--jt-accent, #ECC31F);
   color: #fff;
   text-decoration: none;
-  font-size: 1rem;
+  font-size: 0.95rem;
   font-weight: 700;
   line-height: 1;
   white-space: nowrap;
-  transition: transform 0.2s ease, opacity 0.2s ease;
+  box-shadow: 0 4px 10px rgba(236, 195, 31, 0.18);
+  transition: opacity 0.2s ease, box-shadow 0.2s ease;
 }
 
 .shop-home-entry__button:hover,
 .shop-home-entry__button:focus-visible {
-  opacity: 0.92;
-  transform: translateY(-1px);
+  opacity: 0.94;
+  color: #fff;
+  box-shadow: 0 6px 14px rgba(236, 195, 31, 0.22);
 }
 
 /* prázdny stav */
@@ -135,24 +137,112 @@
 
 /* názov */
 .shop-home-entry ul.products li.product .woocommerce-loop-product__title {
-  margin: 0 0 8px;
-  font-size: 1rem;
-  line-height: 1.35;
-  color: var(--jt-link, #1d4ed8);
-}
-
-/* cena */
-.shop-home-entry ul.products li.product .price {
   margin: 0 0 10px;
   font-size: 1rem;
+  line-height: 1.35;
+  color: var(--jt-ink, #0f172a);
+  min-height: calc(1.35em * 3);
+}
+
+.shop-home-entry ul.products li.product a.woocommerce-LoopProduct-link,
+.shop-home-entry ul.products li.product a.woocommerce-loop-product__link {
+  text-decoration: none;
+  color: inherit;
+}
+
+.shop-home-entry ul.products li.product a.woocommerce-LoopProduct-link:hover .woocommerce-loop-product__title,
+.shop-home-entry ul.products li.product a.woocommerce-LoopProduct-link:focus-visible .woocommerce-loop-product__title,
+.shop-home-entry ul.products li.product a.woocommerce-loop-product__link:hover .woocommerce-loop-product__title,
+.shop-home-entry ul.products li.product a.woocommerce-loop-product__link:focus-visible .woocommerce-loop-product__title {
+  color: var(--jt-primary-dark, #1e3a8a);
+}
+
+/* cena + sklad */
+.jt-home-product__price-row {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 10px;
+  width: 100%;
+  margin: 0 0 10px;
+  padding: 0 10px; 
+  box-sizing: border-box;
+}
+
+.jt-home-product__price-row .jt-stock-inline {
+  order: 1;
+  margin: 0;
+  font-size: 0.9rem;
+  font-weight: 400;
+  line-height: 1.2;
+  color: #16a34a !important;
+  white-space: nowrap;
+}
+
+.jt-home-product__price-row .price {
+  order: 2;
+  margin: 0;
+  margin-left: auto;
+  font-size: 1.1rem;
   font-weight: 600;
+  line-height: 1.2;
+  text-align: right;
+}
+
+.jt-home-product__price-row .price,
+.jt-home-product__price-row .price span,
+.jt-home-product__price-row .price bdi {
+  color: #3095e8 !important;
 }
 
 /* tlačidlo produktu */
-.shop-home-entry ul.products li.product .button {
+.shop-home-entry ul.products li.product .button,
+.shop-home-entry ul.products li.product a.button,
+.shop-home-entry ul.products li.product .add_to_cart_button,
+.shop-home-entry ul.products li.product .ajax_add_to_cart {
+  display: inline-flex !important;
+  align-items: center;
+  justify-content: center;
+  align-self: center;
+  width: auto !important;
+  min-width: 0;
+  max-width: 100%;
+  height: 36px;
+  min-height: 36px;
   margin-top: auto;
-  min-height: 42px;
-  border-radius: 10px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: -2px;
+  padding: 0 14px !important;
+  border: 0;
+  border-radius: 999px;
+  background: linear-gradient(135deg, #3095e8 0%, #194b9b 100%) !important;
+  color: #fff !important;
+  font-size: 0.88rem;
+  font-weight: 700;
+  line-height: 1;
+  text-decoration: none !important;
+  white-space: nowrap;
+  box-shadow: 0 2px 6px rgba(29, 78, 216, 0.12);
+  transition: opacity 0.2s ease, box-shadow 0.2s ease;
+  box-sizing: border-box;
+}
+
+.shop-home-entry ul.products li.product .button:hover,
+.shop-home-entry ul.products li.product .button:focus-visible,
+.shop-home-entry ul.products li.product a.button:hover,
+.shop-home-entry ul.products li.product a.button:focus-visible,
+.shop-home-entry ul.products li.product .add_to_cart_button:hover,
+.shop-home-entry ul.products li.product .add_to_cart_button:focus-visible,
+.shop-home-entry ul.products li.product .ajax_add_to_cart:hover,
+.shop-home-entry ul.products li.product .ajax_add_to_cart:focus-visible {
+  color: #fff !important;
+  opacity: 0.96;
+  box-shadow: 0 3px 8px rgba(29, 78, 216, 0.16);
+}
+
+.shop-home-entry ul.products li.product .added_to_cart {
+  display: none !important;
 }
 
 /* veľký desktop – stále 6 */
@@ -207,5 +297,17 @@
   .shop-home-entry ul.products {
     gap: 12px;
     grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .shop-home-entry__button {
+    width: 100%;
+  }
+
+  .shop-home-entry ul.products li.product .woocommerce-loop-product__title {
+    min-height: 0;
+  }
+
+  .shop-home-entry ul.products li.product .jt-home-product__price-row {
+    gap: 8px;
   }
 }
