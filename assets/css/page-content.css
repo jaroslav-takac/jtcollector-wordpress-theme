@@ -305,7 +305,7 @@
   text-align: center;
   white-space: nowrap;
   box-shadow: 0 2px 6px rgba(29, 78, 216, 0.12);
-  transition: background 0.2s ease, box-shadow 0.2s ease, opacity 0.2s ease;
+  transition: filter 0.18s ease, opacity 0.18s ease;
   cursor: pointer;
   box-sizing: border-box;
 }
@@ -327,8 +327,9 @@
 .woocommerce #respond input#submit:hover,
 .woocommerce #respond input#submit:focus-visible {
   color: #fff !important;
-  box-shadow: 0 3px 8px rgba(29, 78, 216, 0.16);
-  opacity: 0.96;
+  filter: brightness(1.08);
+  opacity: 1;
+  box-shadow: 0 2px 6px rgba(29, 78, 216, 0.12);
 }
 
 .woocommerce a.button.disabled,
