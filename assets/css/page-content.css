@@ -55,6 +55,239 @@
 }
 
 /* ========================================
+   GUTENBERG CONTENT
+   základný styling pre obsah stránok
+======================================== */
+
+.page-entry__content > .wp-block-group:first-child,
+.page-entry__content > .wp-block-cover:first-child,
+.page-entry__content > .wp-block-columns:first-child,
+.page-entry__content > .wp-block-media-text:first-child,
+.page-entry__content > p:first-child {
+  margin-top: 0;
+}
+
+.page-entry__content > .wp-block-group:last-child,
+.page-entry__content > .wp-block-cover:last-child,
+.page-entry__content > .wp-block-columns:last-child,
+.page-entry__content > .wp-block-media-text:last-child,
+.page-entry__content > p:last-child {
+  margin-bottom: 0;
+}
+
+.page-entry__content > .wp-block-group,
+.page-entry__content > .wp-block-cover,
+.page-entry__content > .wp-block-columns,
+.page-entry__content > .wp-block-media-text {
+  margin: 0 0 24px;
+}
+
+.page-entry__content > .wp-block-group {
+  background: #fff;
+  border: 1px solid var(--jt-line, #dbe3ee);
+  border-radius: 24px;
+  padding: 28px 28px 30px;
+  box-shadow: 0 10px 30px rgba(15, 23, 42, 0.04);
+  box-sizing: border-box;
+}
+
+.page-entry__content p {
+  margin: 0 0 18px;
+  font-size: 1.08rem;
+  line-height: 1.8;
+  color: #334155;
+}
+
+.page-entry__content p:last-child {
+  margin-bottom: 0;
+}
+
+.page-entry__content strong {
+  font-weight: 800;
+  color: var(--jt-ink, #0f172a);
+}
+
+.page-entry__content em {
+  color: #475569;
+}
+
+.page-entry__content a {
+  color: var(--jt-primary, #3095e8);
+  text-decoration: underline;
+  text-decoration-thickness: 1.5px;
+  text-underline-offset: 2px;
+  transition: color 0.18s ease;
+}
+
+.page-entry__content a:hover,
+.page-entry__content a:focus-visible {
+  color: var(--jt-primary-dark, #1e3a8a);
+}
+
+.page-entry__content h1,
+.page-entry__content h2,
+.page-entry__content h3,
+.page-entry__content h4 {
+  margin: 0 0 14px;
+  color: var(--jt-ink, #0f172a);
+  line-height: 1.18;
+  font-weight: 800;
+}
+
+.page-entry__content h1 {
+  font-size: clamp(2rem, 3vw, 3rem);
+}
+
+.page-entry__content h2 {
+  font-size: clamp(1.6rem, 2.4vw, 2.35rem);
+}
+
+.page-entry__content h3 {
+  font-size: clamp(1.3rem, 2vw, 1.75rem);
+}
+
+.page-entry__content h4 {
+  font-size: 1.15rem;
+}
+
+.page-entry__content ul,
+.page-entry__content ol {
+  margin: 0 0 20px;
+  padding-left: 1.4rem;
+  color: #334155;
+}
+
+.page-entry__content li {
+  margin-bottom: 8px;
+  line-height: 1.75;
+}
+
+.page-entry__content blockquote {
+  margin: 0 0 24px;
+  padding: 18px 20px;
+  border-left: 4px solid var(--jt-primary, #3095e8);
+  background: #f8fbff;
+  border-radius: 0 16px 16px 0;
+  color: #334155;
+}
+
+.page-entry__content blockquote p {
+  margin: 0;
+}
+
+.page-entry__content figure {
+  margin: 0 0 24px;
+}
+
+.page-entry__content img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+  border-radius: 16px;
+}
+
+.page-entry__content .wp-block-image figcaption {
+  margin-top: 10px;
+  font-size: 0.92rem;
+  line-height: 1.5;
+  color: var(--jt-muted, #6b7280);
+  text-align: center;
+}
+
+.page-entry__content .wp-block-separator {
+  margin: 28px 0;
+  border: 0;
+  border-top: 2px solid #d9e9fb;
+}
+
+.page-entry__content .wp-block-buttons {
+  margin: 22px 0 0;
+}
+
+.page-entry__content .wp-block-button__link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 40px;
+  padding: 0 18px;
+  border-radius: 999px;
+  background: linear-gradient(135deg, #3095e8 0%, #194b9b 100%);
+  color: #fff !important;
+  font-size: 0.92rem;
+  font-weight: 700;
+  line-height: 1;
+  text-decoration: none;
+  box-shadow: 0 2px 6px rgba(29, 78, 216, 0.12);
+  transition: filter 0.18s ease, opacity 0.18s ease;
+}
+
+.page-entry__content .wp-block-button__link:hover,
+.page-entry__content .wp-block-button__link:focus-visible {
+  color: #fff !important;
+  filter: brightness(1.08);
+}
+
+.page-entry__content .wp-block-columns {
+  gap: 24px;
+}
+
+.page-entry__content .has-small-font-size {
+  font-size: 0.95rem;
+}
+
+.page-entry__content .has-medium-font-size {
+  font-size: 1.08rem;
+}
+
+.page-entry__content .has-large-font-size {
+  font-size: 1.22rem;
+}
+
+.page-entry__content .has-x-large-font-size {
+  font-size: 1.4rem;
+}
+
+/* ========================================
+   FRONT PAGE
+======================================== */
+
+.front-page-entry {
+  margin: 12px 0;
+}
+
+.front-page-entry .page-entry__content > .wp-block-group {
+  margin-bottom: 0;
+}
+
+.front-page-entry .page-entry__content > .wp-block-group:first-child {
+  text-align: center;
+}
+
+.front-page-entry .page-entry__content > .wp-block-group:first-child p {
+  max-width: 1320px;
+  margin-inline: auto;
+}
+
+.front-page-entry .page-entry__content > .wp-block-group:first-child h1,
+.front-page-entry .page-entry__content > .wp-block-group:first-child h2 {
+  margin-bottom: 18px;
+}
+
+.front-page-entry .page-entry__content > .wp-block-group:first-child p:last-child {
+  margin-bottom: 0;
+}
+
+/* hero slider pod headerom */
+.front-page-hero-slider {
+  margin-top: 12px;
+}
+
+/* promo banner slider nizsie na homepage */
+.front-page-promo-slider {
+  margin-top: 0px;
+}
+
+/* ========================================
    SINGLE POST
 ======================================== */
 
@@ -305,7 +538,7 @@
   text-align: center;
   white-space: nowrap;
   box-shadow: 0 2px 6px rgba(29, 78, 216, 0.12);
-  transition: background 0.2s ease, box-shadow 0.2s ease, opacity 0.2s ease;
+  transition: filter 0.18s ease, opacity 0.18s ease;
   cursor: pointer;
   box-sizing: border-box;
 }
@@ -327,8 +560,9 @@
 .woocommerce #respond input#submit:hover,
 .woocommerce #respond input#submit:focus-visible {
   color: #fff !important;
-  box-shadow: 0 3px 8px rgba(29, 78, 216, 0.16);
-  opacity: 0.96;
+  filter: brightness(1.08);
+  opacity: 1;
+  box-shadow: 0 2px 6px rgba(29, 78, 216, 0.12);
 }
 
 .woocommerce a.button.disabled,
@@ -340,12 +574,10 @@
   box-shadow: none;
 }
 
-/* archív – trošku vzduchu pod textom */
 .archive-card__link {
   padding-inline: 16px;
 }
 
-/* blog sekcia na homepage – button iba mierne sirsi ako text */
 .home-blog-card .jt-button {
   align-self: center;
   width: auto;
@@ -353,13 +585,11 @@
   padding-inline: 24px;
 }
 
-/* footer button v blog sekcii */
 .home-blog__footer .jt-button {
   width: auto;
   padding-inline: 18px;
 }
 
-/* produkty – zjednotit Woo tlacidla, ale nie cez celu sirku */
 .shop-home-entry ul.products li.product .button,
 .woocommerce ul.products li.product .button {
   width: auto;
@@ -368,11 +598,36 @@
   padding-inline: 14px;
 }
 
-/* ak je niekde wrapper centrovany, button ostane pekne kompaktny */
 .woocommerce ul.products li.product .button.added,
 .woocommerce ul.products li.product .button.loading {
   width: auto;
   padding-inline: 14px;
+}
+
+/* ========================================
+   FRONT PAGE – LEGAL NOTE
+======================================== */
+
+.front-page-note {
+  margin: 12px 0 0;
+  padding: 12px 0 0;
+}
+
+.front-page-note .site-container {
+  max-width: 1200px;
+}
+
+.front-page-note p {
+  margin: 0 0 6px;
+  font-size: 13px;
+  line-height: 1.5;
+  color: #9ca3af;
+}
+
+.front-page-note p strong {
+  font-size: 13px;
+  font-weight: 600;
+  color: #6b7280;
 }
 
 /* ========================================
@@ -401,6 +656,10 @@
 
   .archive-card__image {
     aspect-ratio: 16 / 9;
+  }
+
+  .page-entry__content > .wp-block-group {
+    padding: 24px 22px 26px;
   }
 }
 
@@ -482,5 +741,27 @@
   .home-blog__footer .jt-button {
     width: auto;
     max-width: 100%;
+  }
+
+  .page-entry__content > .wp-block-group {
+    padding: 20px 16px 22px;
+    border-radius: 18px;
+  }
+
+  .page-entry__content p {
+    font-size: 1rem;
+    line-height: 1.72;
+  }
+
+  .page-entry__content h2 {
+    font-size: 1.55rem;
+  }
+
+  .page-entry__content h3 {
+    font-size: 1.22rem;
+  }
+
+  .page-entry__content .wp-block-columns {
+    gap: 16px;
   }
 }

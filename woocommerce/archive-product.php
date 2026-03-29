@@ -86,12 +86,25 @@ add_action('woocommerce_after_shop_loop_item_title', 'jtcollector_archive_price_
 					if (shortcode_exists('yith_wcan_filters')) {
 						echo do_shortcode('[yith_wcan_filters slug="draft-preset"]');
 					}
-
-					if (class_exists('WC_Widget_Price_Filter')) {
-						the_widget('WC_Widget_Price_Filter');
-					}
 					?>
 				</div>
+
+				<?php
+				if (class_exists('WC_Widget_Price_Filter')) {
+					the_widget(
+						'WC_Widget_Price_Filter',
+						[
+							'title' => 'Filtrovať podľa ceny',
+						],
+						[
+							'before_widget' => '<div class="shop-price-filter-box entry-card widget woocommerce widget_price_filter">',
+							'after_widget'  => '</div>',
+							'before_title'  => '<h3>',
+							'after_title'   => '</h3>',
+						]
+					);
+				}
+				?>
 			</aside>
 
 			<div class="shop-archive-content entry-card">
