@@ -49,17 +49,19 @@
   background: #fff;
   border: 1px solid var(--jt-line, #dbe3ee);
   border-radius: 24px;
-  padding: 24px 20px;
+  padding: 24px 20px 0px;
   box-shadow: 0 10px 30px rgba(15, 23, 42, 0.04);
   box-sizing: border-box;
 }
 
+/* hlavné nadpisy boxov = tmavomodrá */
 .shop-sidebar h3,
 .shop-price-filter-box > h3,
 .shop-price-filter-box .widgettitle {
   margin: 0 0 10px;
   font-size: 1.1rem;
   line-height: 1.3;
+  color: var(--jt-primary-dark, #0f3b78);
 }
 
 /* quick links */
@@ -82,28 +84,83 @@
   text-decoration: underline;
 }
 
-/* filter spacing */
+/* ========================================
+   YITH FILTER – UI polish
+======================================== */
+
+/* základné odsadenie filtrov */
 .shop-filter-box .yith-wcan-filter,
 .shop-filter-box .yith-wcan-filters .yith-wcan-filter,
 .shop-filter-box .yith-wcan-blocks-container .yith-wcan-filter {
-  margin-bottom: 18px;
+  margin-bottom: 14px;
+  padding-bottom: 14px;
+  border-bottom: 1px solid var(--jt-line, #dbe3ee);
 }
 
 .shop-filter-box .yith-wcan-filter:last-child,
 .shop-filter-box .yith-wcan-filters .yith-wcan-filter:last-child,
 .shop-filter-box .yith-wcan-blocks-container .yith-wcan-filter:last-child {
   margin-bottom: 0;
+  padding-bottom: 0;
+  border-bottom: 0;
 }
 
+/* názvy kategórií filtra = svetlomodrá */
 .shop-filter-box .yith-wcan-filter-title,
 .shop-filter-box .filter-title,
 .shop-filter-box h4,
 .shop-filter-box strong {
+  display: block;
   margin: 0 0 8px !important;
+  font-size: 1rem;
   line-height: 1.3;
+  font-weight: 700;
+  color: #3095e8 !important;
+}
+
+/* accordion trigger – ak sa podarí rozbehať JS */
+.shop-filter-box .jt-filter-accordion__trigger {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  width: 100%;
+  margin: 0 0 8px !important;
+  padding: 0;
+  cursor: pointer;
+  user-select: none;
+}
+
+/* svetlomodrá rotujúca šípka */
+.shop-filter-box .jt-filter-accordion__trigger::after {
+  content: "";
+  flex: 0 0 auto;
+  width: 9px;
+  height: 9px;
+  border-right: 2px solid #3095e8;
+  border-bottom: 2px solid #3095e8;
+  transform: rotate(45deg);
+  transform-origin: center;
+  transition: transform 0.22s ease;
+  margin-top: -2px;
+}
+
+.shop-filter-box .jt-filter-accordion.is-open .jt-filter-accordion__trigger::after {
+  transform: rotate(225deg);
+  margin-top: 2px;
+}
+
+/* obsah accordionu */
+.shop-filter-box .jt-filter-accordion__content {
+  display: none;
+  padding-top: 0;
+}
+
+.shop-filter-box .jt-filter-accordion.is-open .jt-filter-accordion__content {
   display: block;
 }
 
+/* zoznamy */
 .shop-filter-box ul,
 .shop-filter-box .filter-items,
 .shop-filter-box .yith-wcan-list,
@@ -124,6 +181,60 @@
 .shop-filter-box .yith-wcan-checkbox-list li:last-child,
 .shop-filter-box .yith-wcan-list li:last-child {
   margin-bottom: 0;
+}
+
+/* labely a odkazy vo filtri */
+.shop-filter-box label,
+.shop-filter-box .yith-wcan-label,
+.shop-filter-box .yith-wcan-filter li a,
+.shop-filter-box .yith-wcan-filter label a,
+.shop-filter-box .yith-wcan-filter li,
+.shop-filter-box .yith-wcan-filter span {
+  color: var(--jt-ink, #0f172a);
+  text-decoration: none;
+  transition: color 0.18s ease;
+}
+
+/* hover = tmavomodrá */
+.shop-filter-box label:hover,
+.shop-filter-box .yith-wcan-label:hover,
+.shop-filter-box .yith-wcan-filter li:hover,
+.shop-filter-box .yith-wcan-filter li a:hover,
+.shop-filter-box .yith-wcan-filter label a:hover,
+.shop-filter-box .yith-wcan-filter span:hover {
+  color: var(--jt-primary-dark, #0f3b78) !important;
+}
+
+/* active / selected = tmavomodrá */
+.shop-filter-box .yith-wcan-list li.chosen,
+.shop-filter-box .yith-wcan-list li.chosen a,
+.shop-filter-box .yith-wcan-checkbox-list li.chosen,
+.shop-filter-box .yith-wcan-checkbox-list li.chosen label,
+.shop-filter-box .yith-wcan-filter .active,
+.shop-filter-box .yith-wcan-filter .active a,
+.shop-filter-box .yith-wcan-filter .active label,
+.shop-filter-box .yith-wcan-filter input[type="checkbox"]:checked + span,
+.shop-filter-box .yith-wcan-filter input[type="checkbox"]:checked + label {
+  color: var(--jt-primary-dark, #0f3b78) !important;
+}
+
+/* checkboxy – jemne vyššie a trochu väčšie */
+.shop-filter-box input[type="checkbox"] {
+  position: relative;
+  top: -1px;
+  transform: scale(1.08);
+  transform-origin: center;
+  margin-right: 8px;
+  accent-color: #3095e8;
+}
+
+/* lepšie vertikálne zarovnanie textu a checkboxu */
+.shop-filter-box .yith-wcan-checkbox-list label,
+.shop-filter-box .yith-wcan-filter label,
+.shop-filter-box li label {
+  display: inline-flex;
+  align-items: center;
+  line-height: 1.35;
 }
 
 /* content */

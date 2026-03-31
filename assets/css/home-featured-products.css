@@ -79,9 +79,8 @@
 .shop-home-entry__button:hover,
 .shop-home-entry__button:focus-visible {
   color: #fff;
-  filter: brightness(1.08);
-  opacity: 1;
-  box-shadow: 0 4px 10px rgba(236, 195, 31, 0.18);
+  opacity: 0.94;
+  box-shadow: 0 6px 14px rgba(236, 195, 31, 0.22);
 }
 
 /* prázdny stav */
