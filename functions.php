@@ -131,4 +131,35 @@ function jtcollector_header_cart_fragment($fragments) {
 
 	return $fragments;
 }
+
+/**
+ * Enqueue filter accordion script on shop and product archive pages
+ */	
+add_action('wp_enqueue_scripts', function () {
+	if (is_shop() || is_product_category() || is_product_tag()) {
+		wp_enqueue_script(
+		'jt-filter-accordion',
+		get_template_directory_uri() . '/assets/js/filter-accordion.js',
+		[],
+		'1.0.2',
+		true
+		);  
+	}
+});
+
+/**
+ * Enqueue filter force reload script on shop and product archive pages
+ */
+add_action('wp_enqueue_scripts', function () {
+	if (is_shop() || is_product_taxonomy() || is_product_tag()) {
+		wp_enqueue_script(
+			'jt-filter-force-reload',
+			get_template_directory_uri() . '/assets/js/filter-force-reload.js',
+			[],
+			'1.0.0',
+			true
+		);
+	}
+});
+
 add_filter('woocommerce_add_to_cart_fragments', 'jtcollector_header_cart_fragment');
