@@ -85,6 +85,172 @@
 }
 
 /* ========================================
+   QUICK LINKS = rovnaký štýl ako filter
+======================================== */
+
+.shop-quick-links ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.shop-quick-links li {
+  display: flex;
+  align-items: center;
+  margin: 0 0 8px;
+}
+
+.shop-quick-links li:last-child {
+  margin-bottom: 0;
+}
+
+/* základ textu */
+.shop-quick-links,
+.shop-quick-links ul,
+.shop-quick-links li,
+.shop-quick-links label,
+.shop-quick-links a,
+.shop-quick-links span {
+  color: var(--jt-ink, #0f172a) !important;
+  text-decoration: none;
+  transition: color 0.18s ease;
+}
+
+/* hover */
+.shop-quick-links a:hover,
+.shop-quick-links label:hover,
+.shop-quick-links span:hover,
+.shop-quick-links li:hover > a,
+.shop-quick-links li:hover > label,
+.shop-quick-links li:hover > span {
+  color: var(--jt-primary-dark, #0f3b78) !important;
+  text-decoration: none;
+}
+
+/* aktívny / selected stav – tvrdý override */
+.shop-quick-links .chosen,
+.shop-quick-links .active,
+.shop-quick-links .current,
+.shop-quick-links .selected,
+.shop-quick-links li.chosen,
+.shop-quick-links li.active,
+.shop-quick-links li.current,
+.shop-quick-links li.selected,
+.shop-quick-links .chosen a,
+.shop-quick-links .active a,
+.shop-quick-links .current a,
+.shop-quick-links .selected a,
+.shop-quick-links li.chosen > a,
+.shop-quick-links li.active > a,
+.shop-quick-links li.current > a,
+.shop-quick-links li.selected > a,
+.shop-quick-links .chosen span,
+.shop-quick-links .active span,
+.shop-quick-links .current span,
+.shop-quick-links .selected span,
+.shop-quick-links li.chosen > span,
+.shop-quick-links li.active > span,
+.shop-quick-links li.current > span,
+.shop-quick-links li.selected > span,
+.shop-quick-links input[type="checkbox"]:checked + span,
+.shop-quick-links input[type="checkbox"]:checked + label {
+  color: var(--jt-primary-dark, #0f3b78) !important;
+}
+
+/* visited/link override */
+.shop-quick-links a:link,
+.shop-quick-links a:visited,
+.shop-quick-links .chosen a:link,
+.shop-quick-links .chosen a:visited,
+.shop-quick-links .active a:link,
+.shop-quick-links .active a:visited {
+  color: inherit !important;
+}
+
+/* label / click area */
+.shop-quick-links label,
+.shop-quick-links li label,
+.shop-quick-links li > a,
+.shop-quick-links li > span {
+  display: inline-flex;
+  align-items: center;
+  min-height: 26px;
+  line-height: 1.4;
+  cursor: pointer;
+}
+
+/* checkbox – väčší a pevnejšie zarovnaný */
+.shop-quick-links input[type="checkbox"] {
+  position: relative;
+  top: -1px;
+  transform: scale(1.08);
+  transform-origin: center;
+  margin-right: 8px;
+  accent-color: #3095e8;
+}
+
+/* ========================================
+   TOOLBAR – sorting select fix
+======================================== */
+
+.woocommerce .woocommerce-ordering {
+  margin-bottom: 18px;
+  position: relative; /* potrebné pre šípku */
+  display: inline-block;
+}
+
+.woocommerce .woocommerce-ordering select,
+.post-type-archive-product .woocommerce .woocommerce-ordering select,
+.tax-product_cat .woocommerce .woocommerce-ordering select,
+.tax-product_tag .woocommerce .woocommerce-ordering select {
+  -webkit-appearance: none;
+  appearance: none;
+  min-height: 30px;
+  padding: 2px 38px 2px 12px; /* miesto pre šípku */
+  font-size: 1rem;
+  line-height: 1.35;
+  border-radius: 10px;
+  border: 1px solid var(--jt-line, #dbe3ee);
+  background-color: #fff;
+  color: var(--jt-ink, #0f172a) !important;
+  cursor: pointer;
+  transition: border-color 0.18s ease, box-shadow 0.18s ease;
+}
+
+/* hover / focus */
+.woocommerce .woocommerce-ordering select:hover,
+.woocommerce .woocommerce-ordering select:focus,
+.post-type-archive-product .woocommerce .woocommerce-ordering select:hover,
+.post-type-archive-product .woocommerce .woocommerce-ordering select:focus,
+.tax-product_cat .woocommerce .woocommerce-ordering select:hover,
+.tax-product_cat .woocommerce .woocommerce-ordering select:focus,
+.tax-product_tag .woocommerce .woocommerce-ordering select:hover,
+.tax-product_tag .woocommerce .woocommerce-ordering select:focus {
+  border-color: #3095e8;
+  box-shadow: 0 0 0 2px rgba(48, 149, 232, 0.12);
+  outline: none;
+}
+
+/* custom šípka (rovnaký štýl ako filter) */
+.woocommerce .woocommerce-ordering::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  right: 12px;
+  width: 8px;
+  height: 8px;
+  border-right: 2px solid #3095e8;
+  border-bottom: 2px solid #3095e8;
+  transform: translateY(calc(-50% - 2px)) rotate(45deg);
+  pointer-events: none;
+}
+
+/* jemný hover efekt šípky */
+.woocommerce .woocommerce-ordering:hover::after {
+  border-color: #0f3b78;
+}
+
+/* ========================================
    YITH FILTER – UI polish
 ======================================== */
 

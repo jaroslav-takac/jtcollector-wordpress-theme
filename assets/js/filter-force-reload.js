@@ -1,28 +1,28 @@
 document.addEventListener('DOMContentLoaded', function () {
-  const filterBox = document.querySelector('.shop-filter-box');
+  const filterAreas = document.querySelectorAll('.shop-filter-box, .shop-quick-links');
   const target = document.querySelector('.shop-archive-layout');
 
   let redirectTimer = null;
-  const lastUrl = window.location.href;
+  const initialUrl = window.location.href;
 
   function goToCurrentUrl() {
     const nextUrl = window.location.href;
 
-    if (nextUrl !== lastUrl) {
-      sessionStorage.setItem('jt-scroll-after-filter', '1');
+    sessionStorage.setItem('jt-scroll-after-filter', '1');
+
+    if (nextUrl !== initialUrl) {
       window.location.assign(nextUrl);
       return;
     }
 
     setTimeout(function () {
       const delayedUrl = window.location.href;
-      sessionStorage.setItem('jt-scroll-after-filter', '1');
       window.location.assign(delayedUrl);
     }, 500);
   }
 
-  if (filterBox) {
-    filterBox.addEventListener('change', function (event) {
+  filterAreas.forEach(function (area) {
+    area.addEventListener('change', function (event) {
       const input = event.target.closest('input[type="checkbox"], input[type="radio"], select');
 
       if (!input) return;
@@ -31,7 +31,7 @@ document.addEventListener('DOMContentLoaded', function () {
       redirectTimer = setTimeout(goToCurrentUrl, 700);
     });
 
-    filterBox.addEventListener('click', function (event) {
+    area.addEventListener('click', function (event) {
       const link = event.target.closest('a');
 
       if (!link) return;
@@ -39,7 +39,7 @@ document.addEventListener('DOMContentLoaded', function () {
       clearTimeout(redirectTimer);
       redirectTimer = setTimeout(goToCurrentUrl, 700);
     });
-  }
+  });
 
   const shouldScroll = sessionStorage.getItem('jt-scroll-after-filter') === '1';
 
@@ -50,8 +50,8 @@ document.addEventListener('DOMContentLoaded', function () {
     const adminBar = document.getElementById('wpadminbar');
 
     const offset =
-    (shopNav ? shopNav.offsetHeight : 50) +
-    (adminBar ? adminBar.offsetHeight : 0) + 24;
+      (shopNav ? shopNav.offsetHeight : 50) +
+      (adminBar ? adminBar.offsetHeight : 0) + 24;
 
     const y = target.getBoundingClientRect().top + window.pageYOffset - offset;
 

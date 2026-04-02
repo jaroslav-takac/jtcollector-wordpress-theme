@@ -70,7 +70,7 @@ add_action('woocommerce_after_shop_loop_item_title', 'jtcollector_archive_price_
 
 			<aside class="shop-sidebar">
 				<div class="shop-quick-links entry-card">
-					<h3><?php woocommerce_page_title(); ?> – rýchly výber</h3>
+					<h3>Rýchly výber</h3>
 
 					<?php
 					if (shortcode_exists('yith_wcan_filters')) {
