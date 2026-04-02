@@ -63,14 +63,33 @@ get_header();
 												$values = [];
 
 												if (!empty($terms) && !is_wp_error($terms)) {
-													foreach ($terms as $term) {
-														$link = get_term_link($term);
+													// základná cieľová URL = shop
+													$base_url = get_permalink(wc_get_page_id('shop'));
 
-														if (!is_wp_error($link)) {
-															$values[] = '<a href="' . esc_url($link) . '">' . esc_html($term->name) . '</a>';
-														} else {
-															$values[] = esc_html($term->name);
+													// ak má produkt kategóriu, preferujeme odkaz na prvú kategóriu
+													$product_categories = wc_get_product_terms($product->get_id(), 'product_cat', ['fields' => 'all']);
+
+													if (!empty($product_categories) && !is_wp_error($product_categories)) {
+														$primary_category = $product_categories[0];
+														$category_link    = get_term_link($primary_category);
+
+														if (!is_wp_error($category_link)) {
+															$base_url = $category_link;
 														}
+													}
+
+													foreach ($terms as $term) {
+														$taxonomy_name = $attribute->get_name(); // napr. pa_tim
+														$filter_name   = str_replace('pa_', 'filter_', $taxonomy_name); // pa_tim -> filter_tim
+
+														$link = add_query_arg(
+															[
+																$filter_name => $term->slug,
+															],
+															$base_url
+														);
+
+														$values[] = '<a href="' . esc_url($link) . '">' . esc_html($term->name) . '</a>';
 													}
 												}
 
