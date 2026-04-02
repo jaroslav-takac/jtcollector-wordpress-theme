@@ -40,6 +40,19 @@ document.addEventListener('DOMContentLoaded', function () {
     }
   }
 
+  function hasActiveSelection(filter) {
+    return !!filter.querySelector(
+      'input[type="checkbox"]:checked,' +
+      'input[type="radio"]:checked,' +
+      'option:checked,' +
+      'li.chosen,' +
+      '.chosen,' +
+      '.active,' +
+      '.selected,' +
+      '[aria-current="true"]'
+    );
+  }
+
   function prepareAccordions() {
     const filters = filterBox.querySelectorAll('.yith-wcan-filter');
 
@@ -59,6 +72,7 @@ document.addEventListener('DOMContentLoaded', function () {
       }
 
       const key = getFilterKey(title);
+      const isActiveFilter = hasActiveSelection(filter);
 
       filter.classList.add('jt-filter-accordion');
       title.classList.add('jt-filter-accordion__trigger');
@@ -73,8 +87,15 @@ document.addEventListener('DOMContentLoaded', function () {
 
       title.setAttribute('aria-controls', content.id);
 
-      // default len pri prvom stretnutí s filtrom
-      if (!accordionState.has(key)) {
+      /**
+       * Priorita:
+       * 1. aktívny filter = vždy otvorený
+       * 2. uložený stav
+       * 3. defaultne iba prvý filter
+       */
+      if (isActiveFilter) {
+        accordionState.set(key, true);
+      } else if (!accordionState.has(key)) {
         accordionState.set(key, index === 0);
       }
 
