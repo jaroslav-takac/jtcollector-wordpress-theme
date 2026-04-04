@@ -120,6 +120,87 @@
   min-width: 0;
 }
 
+/* image wrapper */
+.jt-home-product__image-wrap {
+  position: relative;
+  display: block;
+  width: 100%;
+  margin: 0 0 12px;
+  padding: 10px;
+  background: #f8fafc;
+  border: 1px solid #d9e2ec;
+  border-radius: 14px;
+  box-sizing: border-box;
+}
+
+/* wishlist v rohu obrázka */
+.jt-home-product__wishlist {
+  position: absolute;
+  top: -1px;
+  right: 6px;
+  z-index: 3;
+  width: 22px;
+  height: 22px;
+  line-height: 1;
+}
+
+/* wrappery pluginu */
+.jt-home-product__wishlist .yith-wcwl-add-to-wishlist,
+.jt-home-product__wishlist .yith-wcwl-add-button,
+.jt-home-product__wishlist .yith-wcwl-wishlistaddedbrowse,
+.jt-home-product__wishlist .yith-wcwl-wishlistexistsbrowse {
+  margin: 0 !important;
+  width: 22px;
+  height: 22px;
+}
+
+/* link */
+.jt-home-product__wishlist a {
+  display: inline-flex !important;
+  align-items: center;
+  justify-content: center;
+  width: 22px !important;
+  height: 22px !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  background: transparent !important;
+  border: 0 !important;
+  box-shadow: none !important;
+  text-decoration: none !important;
+  overflow: hidden;
+  transform: none !important;
+  transition: none !important;
+}
+
+/* hover bez efektov od pluginu */
+.jt-home-product__wishlist a:hover,
+.jt-home-product__wishlist a:focus-visible {
+  transform: none !important;
+  filter: none !important;
+  box-shadow: none !important;
+}
+
+/* skryť texty */
+.jt-home-product__wishlist a span:not(.yith-wcwl-icon),
+.jt-home-product__wishlist .feedback,
+.jt-home-product__wishlist .view-wishlist,
+.jt-home-product__wishlist .separator {
+  display: none !important;
+}
+
+/* ikona – veľkosť áno, farby riadi plugin */
+.jt-home-product__wishlist i,
+.jt-home-product__wishlist .yith-wcwl-icon,
+.jt-home-product__wishlist svg {
+  display: inline-block !important;
+  width: 22px !important;
+  height: 22px !important;
+  line-height: 22px !important;
+  text-align: center !important;
+  font-size: 1.15rem !important;
+  transition: none !important;
+}
+
 /* obrázok */
 .shop-home-entry ul.products li.product img {
   display: block;
@@ -127,11 +208,11 @@
   aspect-ratio: 1 / 1;
   object-fit: contain;
   object-position: center;
-  margin: 0 0 12px;
-  padding: 10px;
-  background: #f8fafc;
-  border: 1px solid #d9e2ec;
-  border-radius: 14px;
+  margin: 0;
+  padding: 0;
+  background: transparent;
+  border: 0;
+  border-radius: 0;
   box-sizing: border-box;
 }
 
@@ -311,5 +392,31 @@
 
   .shop-home-entry ul.products li.product .jt-home-product__price-row {
     gap: 8px;
+  }
+
+  .jt-home-product__wishlist {
+    top: 7px;
+    right: 7px;
+    width: 20px;
+    height: 20px;
+  }
+
+  .jt-home-product__wishlist .yith-wcwl-add-to-wishlist,
+  .jt-home-product__wishlist .yith-wcwl-add-button,
+  .jt-home-product__wishlist .yith-wcwl-wishlistaddedbrowse,
+  .jt-home-product__wishlist .yith-wcwl-wishlistexistsbrowse,
+  .jt-home-product__wishlist a,
+  .jt-home-product__wishlist i,
+  .jt-home-product__wishlist .yith-wcwl-icon,
+  .jt-home-product__wishlist svg {
+    width: 20px !important;
+    height: 20px !important;
+    line-height: 20px !important;
+  }
+
+  .jt-home-product__wishlist i,
+  .jt-home-product__wishlist .yith-wcwl-icon,
+  .jt-home-product__wishlist svg {
+    font-size: 1.02rem !important;
   }
 }

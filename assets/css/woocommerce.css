@@ -498,6 +498,108 @@
   box-sizing: border-box;
 }
 
+/* ========================================
+   ARCHIVE PRODUCT CARD – image wrapper + wishlist
+======================================== */
+
+.woocommerce ul.products li.product .jt-archive-product__image-wrap {
+  position: relative;
+  width: 100%;
+  margin: 0 0 12px;
+  padding: 10px;
+  background: #f8fafc;
+  border: 1px solid #d9e2ec;
+  border-radius: 14px;
+  box-sizing: border-box;
+}
+
+.woocommerce ul.products li.product .jt-archive-product__image-link {
+  display: block;
+  text-decoration: none;
+  color: inherit;
+}
+
+.woocommerce ul.products li.product .jt-archive-product__image-link img {
+  display: block;
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  object-fit: contain;
+  object-position: center;
+  margin: 0 !important;
+  padding: 0;
+  background: transparent;
+  border: 0;
+  border-radius: 0;
+  box-sizing: border-box;
+}
+
+/* wishlist v pravom hornom rohu frame */
+.woocommerce ul.products li.product .jt-archive-product__wishlist {
+  position: absolute;
+  top: -1px;
+  right: 5px;
+  z-index: 3;
+  width: 22px;
+  height: 22px;
+  line-height: 1;
+}
+
+/* wrappery pluginu */
+.woocommerce ul.products li.product .jt-archive-product__wishlist .yith-wcwl-add-to-wishlist,
+.woocommerce ul.products li.product .jt-archive-product__wishlist .yith-wcwl-add-button,
+.woocommerce ul.products li.product .jt-archive-product__wishlist .yith-wcwl-wishlistaddedbrowse,
+.woocommerce ul.products li.product .jt-archive-product__wishlist .yith-wcwl-wishlistexistsbrowse {
+  margin: 0 !important;
+  width: 22px;
+  height: 22px;
+}
+
+/* link */
+.woocommerce ul.products li.product .jt-archive-product__wishlist a {
+  display: inline-flex !important;
+  align-items: center;
+  justify-content: center;
+  width: 20px !important;
+  height: 20px !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  background: transparent !important;
+  border: 0 !important;
+  box-shadow: none !important;
+  text-decoration: none !important;
+  overflow: hidden;
+  transform: none !important;
+  transition: none !important;
+}
+
+.woocommerce ul.products li.product .jt-archive-product__wishlist a:hover,
+.woocommerce ul.products li.product .jt-archive-product__wishlist a:focus-visible {
+  transform: none !important;
+  filter: none !important;
+  box-shadow: none !important;
+}
+
+/* skryť texty */
+.woocommerce ul.products li.product .jt-archive-product__wishlist a span:not(.yith-wcwl-icon),
+.woocommerce ul.products li.product .jt-archive-product__wishlist .feedback,
+.woocommerce ul.products li.product .jt-archive-product__wishlist .view-wishlist,
+.woocommerce ul.products li.product .jt-archive-product__wishlist .separator {
+  display: none !important;
+}
+
+/* ikona – veľkosť áno, farby riadi plugin */
+.woocommerce ul.products li.product .jt-archive-product__wishlist i,
+.woocommerce ul.products li.product .jt-archive-product__wishlist .yith-wcwl-icon,
+.woocommerce ul.products li.product .jt-archive-product__wishlist svg {
+  display: inline-block !important;
+  width: 22px !important;
+  height: 22px !important;
+  line-height: 22px !important;
+  text-align: center !important;
+  font-size: 1.15rem !important;
+  transition: none !important;
+}
+
 /* TITLE */
 .woocommerce ul.products li.product .woocommerce-loop-product__title {
   display: block;
@@ -792,5 +894,31 @@
 
   .shop-price-filter-box .price_slider_amount {
     align-items: flex-start;
+  }
+
+  .woocommerce ul.products li.product .jt-archive-product__wishlist {
+    top: 7px;
+    right: 7px;
+    width: 20px;
+    height: 20px;
+  }
+
+  .woocommerce ul.products li.product .jt-archive-product__wishlist .yith-wcwl-add-to-wishlist,
+  .woocommerce ul.products li.product .jt-archive-product__wishlist .yith-wcwl-add-button,
+  .woocommerce ul.products li.product .jt-archive-product__wishlist .yith-wcwl-wishlistaddedbrowse,
+  .woocommerce ul.products li.product .jt-archive-product__wishlist .yith-wcwl-wishlistexistsbrowse,
+  .woocommerce ul.products li.product .jt-archive-product__wishlist a,
+  .woocommerce ul.products li.product .jt-archive-product__wishlist i,
+  .woocommerce ul.products li.product .jt-archive-product__wishlist .yith-wcwl-icon,
+  .woocommerce ul.products li.product .jt-archive-product__wishlist svg {
+    width: 20px !important;
+    height: 20px !important;
+    line-height: 20px !important;
+  }
+
+  .woocommerce ul.products li.product .jt-archive-product__wishlist i,
+  .woocommerce ul.products li.product .jt-archive-product__wishlist .yith-wcwl-icon,
+  .woocommerce ul.products li.product .jt-archive-product__wishlist svg {
+    font-size: 1.02rem !important;
   }
 }

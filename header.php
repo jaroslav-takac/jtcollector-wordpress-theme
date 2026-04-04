@@ -84,7 +84,7 @@ $info_pages = [
 	'kupa',
 	'vymena',
 	'odkup',
-  'burzy',
+	'burzy',
 ];
 
 $active_header_panel = 'search'; // default
@@ -98,6 +98,10 @@ if (is_home() || is_category() || is_singular('post')) {
 } elseif (is_search()) {
 	$active_header_panel = 'search';
 }
+
+$wishlist_url = function_exists('jtcollector_get_wishlist_url') ? jtcollector_get_wishlist_url() : home_url('/');
+$wishlist_page_id = (int) get_option('yith_wcwl_wishlist_page_id');
+$is_wishlist_page = $wishlist_page_id ? is_page($wishlist_page_id) : false;
 ?><!doctype html>
 <html <?php language_attributes(); ?>>
 <head>
@@ -123,12 +127,12 @@ if (is_home() || is_category() || is_singular('post')) {
 			</div>
 
 			<div class="site-header__center">
-        <nav class="site-header__tabs" aria-label="<?php esc_attr_e('Header tabs', 'jtcollector'); ?>">
-          <button class="site-header__tab<?php echo $active_header_panel === 'about' ? ' is-active' : ''; ?>" type="button" data-panel="about">O mne</button>
-          <button class="site-header__tab<?php echo $active_header_panel === 'info' ? ' is-active' : ''; ?>" type="button" data-panel="info">Informácie</button>
-          <button class="site-header__tab<?php echo $active_header_panel === 'blog' ? ' is-active' : ''; ?>" type="button" data-panel="blog">Blog</button>
-          <button class="site-header__tab<?php echo $active_header_panel === 'search' ? ' is-active' : ''; ?>" type="button" data-panel="search">Vyhľadávanie</button>
-        </nav>
+				<nav class="site-header__tabs" aria-label="<?php esc_attr_e('Header tabs', 'jtcollector'); ?>">
+					<button class="site-header__tab<?php echo $active_header_panel === 'about' ? ' is-active' : ''; ?>" type="button" data-panel="about">O mne</button>
+					<button class="site-header__tab<?php echo $active_header_panel === 'info' ? ' is-active' : ''; ?>" type="button" data-panel="info">Informácie</button>
+					<button class="site-header__tab<?php echo $active_header_panel === 'blog' ? ' is-active' : ''; ?>" type="button" data-panel="blog">Blog</button>
+					<button class="site-header__tab<?php echo $active_header_panel === 'search' ? ' is-active' : ''; ?>" type="button" data-panel="search">Vyhľadávanie</button>
+				</nav>
 
 				<div class="site-header__panel">
 
@@ -191,19 +195,19 @@ if (is_home() || is_category() || is_singular('post')) {
 					<button class="site-header__utility" type="button">SK</button>
 				</div>
 
-        <div class="site-header__shop-bottom">
-          <a href="<?php echo esc_url(get_permalink(get_option('woocommerce_myaccount_page_id'))); ?>" class="site-header__account">
-            <?php echo is_user_logged_in() ? 'Môj účet' : 'Prihlásenie'; ?>
-          </a>
+				<div class="site-header__shop-bottom">
+					<a href="<?php echo esc_url(get_permalink(get_option('woocommerce_myaccount_page_id'))); ?>" class="site-header__account">
+						<?php echo is_user_logged_in() ? 'Môj účet' : 'Prihlásenie'; ?>
+					</a>
 
-          <a href="<?php echo esc_url(wc_get_cart_url()); ?>" class="site-header__cart">
-            <span class="site-header__cart-icon">🛒</span>
-            <span class="site-header__cart-text js-header-cart-text">
-              <?php echo WC()->cart->get_cart_contents_count(); ?> ks /
-              <?php echo wp_kses_post(WC()->cart->get_cart_total()); ?>
-            </span>
-          </a>
-        </div>
+					<a href="<?php echo esc_url(wc_get_cart_url()); ?>" class="site-header__cart">
+						<span class="site-header__cart-icon">🛒</span>
+						<span class="site-header__cart-text js-header-cart-text">
+							<?php echo WC()->cart->get_cart_contents_count(); ?> ks /
+							<?php echo wp_kses_post(WC()->cart->get_cart_total()); ?>
+						</span>
+					</a>
+				</div>
 			</div>
 
 		</div>
@@ -211,13 +215,26 @@ if (is_home() || is_category() || is_singular('post')) {
 
 	<div class="site-header__shop-nav-wrap">
 		<div class="site-header__shop-nav-inner">
-			<nav class="site-header__shop-nav" aria-label="<?php esc_attr_e('Shop menu', 'jtcollector'); ?>">
-				<a class="site-header__shop-link<?php echo jtcollector_is_shop_section_active('hokej') ? ' is-active' : ''; ?>" href="<?php echo esc_url(jtcollector_header_term_link($shop_cat_hokej)); ?>">Hokej</a>
-				<a class="site-header__shop-link<?php echo jtcollector_is_shop_section_active('futbal') ? ' is-active' : ''; ?>" href="<?php echo esc_url(jtcollector_header_term_link($shop_cat_futbal)); ?>">Futbal</a>
-				<a class="site-header__shop-link<?php echo jtcollector_is_shop_section_active('mma') ? ' is-active' : ''; ?>" href="<?php echo esc_url(jtcollector_header_term_link($shop_cat_mma)); ?>">MMA</a>
-				<a class="site-header__shop-link<?php echo jtcollector_is_shop_section_active('samolepky') ? ' is-active' : ''; ?>" href="<?php echo esc_url(jtcollector_header_term_link($shop_cat_samolepky)); ?>">Samolepky</a>
-				<a class="site-header__shop-link<?php echo jtcollector_is_shop_section_active('bazar') ? ' is-active' : ''; ?>" href="<?php echo esc_url(jtcollector_header_term_link($shop_cat_bazar)); ?>">Bazár</a>
-			</nav>
+			<div class="site-header__shop-nav-layout">
+
+				<nav class="site-header__shop-nav" aria-label="<?php esc_attr_e('Shop menu', 'jtcollector'); ?>">
+					<a class="site-header__shop-link<?php echo jtcollector_is_shop_section_active('hokej') ? ' is-active' : ''; ?>" href="<?php echo esc_url(jtcollector_header_term_link($shop_cat_hokej)); ?>">Hokej</a>
+					<a class="site-header__shop-link<?php echo jtcollector_is_shop_section_active('futbal') ? ' is-active' : ''; ?>" href="<?php echo esc_url(jtcollector_header_term_link($shop_cat_futbal)); ?>">Futbal</a>
+					<a class="site-header__shop-link<?php echo jtcollector_is_shop_section_active('mma') ? ' is-active' : ''; ?>" href="<?php echo esc_url(jtcollector_header_term_link($shop_cat_mma)); ?>">MMA</a>
+					<a class="site-header__shop-link<?php echo jtcollector_is_shop_section_active('samolepky') ? ' is-active' : ''; ?>" href="<?php echo esc_url(jtcollector_header_term_link($shop_cat_samolepky)); ?>">Samolepky</a>
+					<a class="site-header__shop-link<?php echo jtcollector_is_shop_section_active('bazar') ? ' is-active' : ''; ?>" href="<?php echo esc_url(jtcollector_header_term_link($shop_cat_bazar)); ?>">Bazár</a>
+				</nav>
+
+				<?php if (is_user_logged_in()) : ?>
+					<div class="site-header__wishlist-nav">
+						<a class="site-header__shop-link site-header__shop-link--wishlist<?php echo $is_wishlist_page ? ' is-active' : ''; ?>" href="<?php echo esc_url($wishlist_url); ?>">
+							<span class="site-header__wishlist-star" aria-hidden="true">★</span>
+							<span class="site-header__wishlist-label">Obľúbené</span>
+						</a>
+					</div>
+				<?php endif; ?>
+
+			</div>
 		</div>
 	</div>
 </header>
