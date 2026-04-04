@@ -59,7 +59,7 @@
 /* wishlist – čistá natívna ikonka pluginu */
 .jt-single-product__wishlist-float {
   position: absolute;
-  top: 14px;
+  top: 8px;
   right: 14px;
   z-index: 5;
   width: 28px;
@@ -90,7 +90,7 @@
   text-decoration: none !important;
   overflow: hidden;
   transform: none !important;
-  transition: color 0.18s ease !important;
+  transition: none !important;
 }
 
 .jt-single-product__wishlist-float a:hover,
@@ -107,6 +107,7 @@
   display: none !important;
 }
 
+/* ikona – veľkosť áno, farbu riadi plugin */
 .jt-single-product__wishlist-float i,
 .jt-single-product__wishlist-float .yith-wcwl-icon,
 .jt-single-product__wishlist-float svg {
@@ -116,16 +117,7 @@
   line-height: 28px !important;
   text-align: center !important;
   font-size: 1.55rem !important;
-  color: var(--jt-primary-dark, #0f3b78) !important;
-  transition: color 0.18s ease !important;
-}
-
-/* pridané / existuje vo wishliste */
-.jt-single-product__wishlist-float .yith-wcwl-wishlistaddedbrowse i,
-.jt-single-product__wishlist-float .yith-wcwl-wishlistaddedbrowse .yith-wcwl-icon,
-.jt-single-product__wishlist-float .yith-wcwl-wishlistexistsbrowse i,
-.jt-single-product__wishlist-float .yith-wcwl-wishlistexistsbrowse .yith-wcwl-icon {
-  color: #ECC31F !important;
+  transition: none !important;
 }
 
 /* vypnúť floaty a default Woo layout */
