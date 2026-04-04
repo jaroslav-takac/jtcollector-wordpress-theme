@@ -56,11 +56,18 @@ $featured_query = new WP_Query($featured_args);
               <li <?php wc_product_class('', $product); ?>>
 
                 <a href="<?php the_permalink(); ?>" class="woocommerce-LoopProduct-link woocommerce-loop-product__link">
-                  <?php
-                  if (has_post_thumbnail()) {
-                    echo woocommerce_get_product_thumbnail();
-                  }
-                  ?>
+                  <div class="jt-home-product__image-wrap">
+                    <div class="jt-home-product__wishlist" aria-label="Pridať do obľúbených">
+                      <?php echo do_shortcode('[yith_wcwl_add_to_wishlist]'); ?>
+                    </div>
+
+                    <?php
+                    if (has_post_thumbnail()) {
+                      echo woocommerce_get_product_thumbnail();
+                    }
+                    ?>
+                  </div>
+
                   <h3 class="woocommerce-loop-product__title"><?php the_title(); ?></h3>
                 </a>
 
