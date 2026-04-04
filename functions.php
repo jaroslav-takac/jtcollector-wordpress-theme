@@ -274,4 +274,22 @@ function jtcollector_single_related_products_hooks(): void
 	add_action('woocommerce_after_shop_loop_item_title', 'woocommerce_template_loop_price', 11);
 	add_action('woocommerce_after_shop_loop_item_title', 'jtcollector_single_related_price_stock_wrap_close', 12);
 }
+
+/**
+ * Vráti URL wishlistu z YITH Wishlist pluginu.
+ */
+if (!function_exists('jtcollector_get_wishlist_url')) {
+	function jtcollector_get_wishlist_url() {
+		if (function_exists('YITH_WCWL')) {
+			$wishlist = YITH_WCWL();
+
+			if ($wishlist && method_exists($wishlist, 'get_wishlist_url')) {
+				return $wishlist->get_wishlist_url();
+			}
+		}
+
+		return home_url('/');
+	}
+}
+
 add_action('wp', 'jtcollector_single_related_products_hooks');

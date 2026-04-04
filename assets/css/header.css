@@ -218,31 +218,26 @@
 
 .site-header__account,
 .site-header__cart{
-  position: relative;
-  padding: 6px 10px;
-  border-radius: 8px;
-  transition: all .2s ease;
+  position:relative;
+  padding:6px 10px;
+  border-radius:8px;
+  transition:all .2s ease;
 }
 
-/* HOVER efekt */
 .site-header__account:hover,
 .site-header__cart:hover{
-  background: rgba(147, 197, 253, 0.25); /* svetlá modrá */
-  color: #ffffff;
+  background:rgba(147, 197, 253, 0.25);
+  color:#ffffff;
 }
 
-/* aby sa nezmenila farba linku */
-.site-header__account:hover{
-  text-decoration: none;
-}
-
+.site-header__account:hover,
 .site-header__cart:hover{
-  text-decoration: none;
+  text-decoration:none;
 }
 
 .site-header__shop-bottom{
-  position: relative;
-  top: -7px;
+  position:relative;
+  top:-7px;
 }
 
 /* =========================
@@ -255,7 +250,7 @@
   justify-content:space-between;
   align-items:flex-end;
   padding:10px 0;
-  margin-right: -20px;
+  margin-right:-20px;
 }
 
 .site-header__shop-top{
@@ -314,12 +309,26 @@
   padding:14px 20px 12px;
 }
 
+.site-header__shop-nav-layout{
+  position:relative;
+  min-height:0;
+}
+
 .site-header__shop-nav{
   display:flex;
   flex-wrap:wrap;
   justify-content:center;
   align-items:center;
   gap:44px;
+}
+
+.site-header__wishlist-nav{
+  position:absolute;
+  top:50%;
+  right:30px;
+  transform:translateY(-50%);
+  display:flex;
+  align-items:center;
 }
 
 .site-header__shop-link{
@@ -363,6 +372,57 @@
 }
 
 /* =========================
+   WISHLIST LINK
+   ========================= */
+
+.site-header__shop-link--wishlist{
+  gap:8px;
+}
+
+.site-header__shop-link--wishlist::after{
+  display:none;
+}
+
+.site-header__wishlist-label{
+  position:relative;
+  display:inline-block;
+}
+
+.site-header__wishlist-label::after{
+  content:"";
+  position:absolute;
+  left:0;
+  bottom:-5px;
+  width:100%;
+  height:2px;
+  background:#0f2f5a;
+  transform:scaleX(0);
+  transform-origin:center;
+  transition:transform .2s ease;
+}
+
+.site-header__shop-link--wishlist:hover .site-header__wishlist-label::after,
+.site-header__shop-link--wishlist:focus .site-header__wishlist-label::after,
+.site-header__shop-link--wishlist.is-active .site-header__wishlist-label::after{
+  transform:scaleX(1);
+}
+
+.site-header__wishlist-star{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  font-size:0.95em;
+  line-height:1;
+  color:#194b9b;
+  transform:translateY(-1px);
+}
+
+.site-header__shop-link--wishlist:hover .site-header__wishlist-star,
+.site-header__shop-link--wishlist:focus .site-header__wishlist-star{
+  color:#194b9b;
+}
+
+/* =========================
    RESPONSIVE
    ========================= */
 
@@ -388,6 +448,7 @@
     justify-content:space-between;
     align-items:center;
     padding:0;
+    margin-right:0;
   }
 
   .site-header__tabs{
@@ -426,8 +487,21 @@
     padding:12px 16px 10px;
   }
 
+  .site-header__shop-nav-layout{
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    gap:10px;
+  }
+
   .site-header__shop-nav{
     gap:18px 22px;
+  }
+
+  .site-header__wishlist-nav{
+    position:static;
+    transform:none;
+    justify-content:center;
   }
 
   .site-header__shop-link{
