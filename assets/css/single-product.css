@@ -59,7 +59,7 @@
 /* wishlist – čistá natívna ikonka pluginu */
 .jt-single-product__wishlist-float {
   position: absolute;
-  top: 8px;
+  top: 6px;
   right: 14px;
   z-index: 5;
   width: 28px;

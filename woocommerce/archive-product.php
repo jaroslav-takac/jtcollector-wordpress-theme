@@ -47,6 +47,45 @@ if (!function_exists('jtcollector_archive_price_stock_wrap_close')) {
 	}
 }
 
+/**
+ * Vlastný obrázkový wrapper pre archív produktu + wishlist.
+ */
+if (!function_exists('jtcollector_archive_product_image_with_wishlist')) {
+	function jtcollector_archive_product_image_with_wishlist() {
+		global $product;
+
+		if (!$product || !is_a($product, 'WC_Product')) {
+			return;
+		}
+
+		echo '<div class="jt-archive-product__image-wrap">';
+
+		echo '<div class="jt-archive-product__wishlist" aria-label="Pridať do obľúbených">';
+		echo do_shortcode('[yith_wcwl_add_to_wishlist]');
+		echo '</div>';
+
+		echo '<a href="' . esc_url(get_permalink()) . '" class="jt-archive-product__image-link woocommerce-LoopProduct-link woocommerce-loop-product__link">';
+
+		if (has_post_thumbnail()) {
+			echo woocommerce_get_product_thumbnail();
+		}
+
+		echo '</a>';
+		echo '</div>';
+	}
+}
+
+/**
+ * Vlastný názov produktu ako samostatný link.
+ */
+if (!function_exists('jtcollector_archive_product_title_link')) {
+	function jtcollector_archive_product_title_link() {
+		echo '<a href="' . esc_url(get_permalink()) . '" class="jt-archive-product__title-link woocommerce-LoopProduct-link woocommerce-loop-product__link">';
+		echo '<h2 class="woocommerce-loop-product__title">' . get_the_title() . '</h2>';
+		echo '</a>';
+	}
+}
+
 /*
  * Default WooCommerce:
  * woocommerce_template_loop_price = priority 10
@@ -62,6 +101,22 @@ add_action('woocommerce_after_shop_loop_item_title', 'jtcollector_archive_price_
 add_action('woocommerce_after_shop_loop_item_title', 'jtcollector_archive_product_stock_inline', 10);
 add_action('woocommerce_after_shop_loop_item_title', 'woocommerce_template_loop_price', 11);
 add_action('woocommerce_after_shop_loop_item_title', 'jtcollector_archive_price_stock_wrap_close', 12);
+
+/*
+ * Vlastná produktová karta pre archív:
+ * - zrušíme default link
+ * - zrušíme default thumbnail
+ * - zrušíme default title
+ * - vložíme vlastný image wrapper s wishlist hviezdičkou
+ * - title necháme ako samostatný link
+ */
+remove_action('woocommerce_before_shop_loop_item', 'woocommerce_template_loop_product_link_open', 10);
+remove_action('woocommerce_after_shop_loop_item', 'woocommerce_template_loop_product_link_close', 5);
+remove_action('woocommerce_before_shop_loop_item_title', 'woocommerce_template_loop_product_thumbnail', 10);
+remove_action('woocommerce_shop_loop_item_title', 'woocommerce_template_loop_product_title', 10);
+
+add_action('woocommerce_before_shop_loop_item_title', 'jtcollector_archive_product_image_with_wishlist', 10);
+add_action('woocommerce_shop_loop_item_title', 'jtcollector_archive_product_title_link', 10);
 ?>
 
 <main class="site-main shop-archive-page">
@@ -162,5 +217,13 @@ remove_action('woocommerce_after_shop_loop_item_title', 'jtcollector_archive_pro
 remove_action('woocommerce_after_shop_loop_item_title', 'woocommerce_template_loop_price', 11);
 remove_action('woocommerce_after_shop_loop_item_title', 'jtcollector_archive_price_stock_wrap_close', 12);
 add_action('woocommerce_after_shop_loop_item_title', 'woocommerce_template_loop_price', 10);
+
+remove_action('woocommerce_before_shop_loop_item_title', 'jtcollector_archive_product_image_with_wishlist', 10);
+remove_action('woocommerce_shop_loop_item_title', 'jtcollector_archive_product_title_link', 10);
+
+add_action('woocommerce_before_shop_loop_item', 'woocommerce_template_loop_product_link_open', 10);
+add_action('woocommerce_after_shop_loop_item', 'woocommerce_template_loop_product_link_close', 5);
+add_action('woocommerce_before_shop_loop_item_title', 'woocommerce_template_loop_product_thumbnail', 10);
+add_action('woocommerce_shop_loop_item_title', 'woocommerce_template_loop_product_title', 10);
 
 get_footer();
