@@ -1,0 +1,538 @@
+/* ========================================
+   SHOP PAGES – cart / checkout / account
+======================================== */
+
+.woocommerce-cart,
+.woocommerce-checkout,
+.woocommerce-account {
+  --jt-shop-page-max: 1360px;
+  --jt-shop-page-gap: 32px;
+}
+
+/* wrapper – rešpektuje page template */
+.woocommerce-cart .site-main,
+.woocommerce-checkout .site-main,
+.woocommerce-account .site-main {
+  max-width: 100%;
+  margin: 0 auto;
+  padding: 12px 0 12px;
+}
+
+/* ========================================
+   REMOVE INNER BOXES
+   page-content.css už robí hlavný biely wrapper
+======================================== */
+
+.woocommerce-cart .wc-block-cart,
+.woocommerce-checkout .wc-block-checkout,
+.woocommerce-account .woocommerce,
+.woocommerce-account .entry-content > .woocommerce,
+.woocommerce-cart .wp-site-blocks .wc-block-cart,
+.woocommerce-checkout .wp-site-blocks .wc-block-checkout {
+  background: transparent !important;
+  border: 0 !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
+  padding: 0 !important;
+}
+
+.woocommerce-cart .wc-block-cart__main,
+.woocommerce-cart .wc-block-cart__sidebar,
+.woocommerce-checkout .wc-block-checkout__main,
+.woocommerce-checkout .wc-block-checkout__sidebar,
+.woocommerce-checkout .wc-block-components-sidebar,
+.woocommerce-checkout .wc-block-components-main,
+.woocommerce-account .woocommerce-MyAccount-content,
+.woocommerce-account .woocommerce-MyAccount-navigation,
+.woocommerce-cart .wc-block-components-sidebar-layout,
+.woocommerce-checkout .wc-block-components-sidebar-layout,
+.woocommerce-cart .wc-block-components-sidebar,
+.woocommerce-checkout .wc-block-components-sidebar {
+  background: transparent !important;
+  border: 0 !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
+  padding: 0 !important;
+}
+
+/* ========================================
+   CART BLOCK – base
+======================================== */
+
+.woocommerce-cart {
+  --jt-cart-line: #dbe3ee;
+}
+
+.woocommerce-cart .wc-block-cart {
+  color: var(--jt-ink, #0f172a);
+}
+
+.woocommerce-cart .wc-block-cart .wc-block-cart__main,
+.woocommerce-cart .wc-block-cart .wc-block-cart__sidebar {
+  box-sizing: border-box;
+}
+
+.woocommerce-cart .wc-block-cart .wc-block-components-sidebar-layout {
+  column-gap: 34px;
+}
+
+.woocommerce-cart .wc-block-cart__main {
+  padding-right: 50px !important;
+}
+
+.woocommerce-cart .wc-block-cart__sidebar {
+  padding-left: 50px !important;
+}
+
+/* nadpisy sekcií */
+.woocommerce-cart .wc-block-cart .wc-block-components-title,
+.woocommerce-cart .wc-block-cart .wc-block-cart__sidebar h2,
+.woocommerce-cart .wc-block-cart .wc-block-cart__sidebar h3,
+.woocommerce-cart .wc-block-cart .wc-block-components-totals-item__label,
+.woocommerce-cart .wc-block-cart .wc-block-components-panel__button,
+.woocommerce-checkout .wc-block-components-title,
+.woocommerce-checkout .wc-block-components-totals-item__label,
+.woocommerce-checkout .wc-block-components-panel__button,
+.woocommerce-account .woocommerce-MyAccount-navigation a,
+.woocommerce-account .woocommerce-MyAccount-content,
+.woocommerce-account .woocommerce-form label {
+  color: var(--jt-ink, #0f172a);
+}
+
+/* jednotné sivé deliace čiary */
+.woocommerce-cart .wc-block-cart .wc-block-cart-items__header,
+.woocommerce-cart .wc-block-cart .wc-block-cart-items__row,
+.woocommerce-cart .wc-block-cart .wc-block-components-totals-wrapper,
+.woocommerce-cart .wc-block-cart .wc-block-components-totals-item,
+.woocommerce-cart .wc-block-cart .wc-block-components-panel,
+.woocommerce-cart .wc-block-cart .wc-block-components-totals-footer-item,
+.woocommerce-cart .wc-block-cart .wc-block-components-totals-coupon,
+.woocommerce-cart .wc-block-cart .wc-block-cart__sidebar > *,
+.woocommerce-checkout .wc-block-checkout .wc-block-components-totals-wrapper,
+.woocommerce-checkout .wc-block-checkout .wc-block-components-totals-item,
+.woocommerce-checkout .wc-block-checkout .wc-block-components-panel,
+.woocommerce-checkout .wc-block-checkout .wc-block-components-order-summary,
+.woocommerce-checkout .wc-block-checkout .wc-block-components-checkout-step,
+.woocommerce-account .woocommerce table.shop_table th,
+.woocommerce-account .woocommerce table.shop_table td,
+.woocommerce-account .woocommerce-MyAccount-navigation ul li {
+  border-color: var(--jt-cart-line) !important;
+}
+
+/* metadata bez deliacej čiary */
+.woocommerce-cart .wc-block-cart .wc-block-components-product-metadata,
+.woocommerce-checkout .wc-block-checkout .wc-block-components-product-metadata {
+  border-color: transparent !important;
+}
+
+/* ========================================
+   PRODUKTY V KOŠÍKU
+======================================== */
+
+/* linky produktov */
+.woocommerce-cart .wc-block-cart-item__wrap a,
+.woocommerce-cart .wc-block-components-product-name,
+.woocommerce-cart .wc-block-components-product-name a {
+  color: var(--jt-ink, #0f172a) !important;
+  text-decoration: none !important;
+  transition: color 0.18s ease;
+}
+
+.woocommerce-cart .wc-block-cart-item__wrap a:hover,
+.woocommerce-cart .wc-block-cart-item__wrap a:focus-visible,
+.woocommerce-cart .wc-block-components-product-name:hover,
+.woocommerce-cart .wc-block-components-product-name:focus-visible,
+.woocommerce-cart .wc-block-components-product-name a:hover,
+.woocommerce-cart .wc-block-components-product-name a:focus-visible {
+  color: var(--jt-primary-dark, #0f3b78) !important;
+  text-decoration: none !important;
+}
+
+/* ceny */
+.woocommerce-cart .wc-block-components-product-price,
+.woocommerce-cart .wc-block-formatted-money-amount,
+.woocommerce-cart .wc-block-components-totals-item__value,
+.woocommerce-cart .wc-block-components-totals-footer-item .wc-block-formatted-money-amount,
+.woocommerce-checkout .wc-block-formatted-money-amount,
+.woocommerce-checkout .wc-block-components-totals-item__value {
+  color: var(--jt-ink, #0f172a);
+}
+
+/* image frame – rovnaký priestor */
+.woocommerce-cart .wc-block-cart-item__image {
+  width: 96px;
+  min-width: 96px;
+  flex: 0 0 96px;
+}
+
+.woocommerce-cart .wc-block-cart-item__image a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 96px;
+  height: 96px;
+  padding: 6px;
+  background: #f8fafc;
+  border: 1px solid #d9e9fb;
+  border-radius: 0;
+  box-sizing: border-box;
+  overflow: hidden;
+}
+
+.woocommerce-cart .wc-block-cart-item__image img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  object-position: center;
+  border-radius: 0 !important;
+  box-shadow: none !important;
+}
+
+.woocommerce-cart .wc-block-cart-item__image img,
+.woocommerce-cart .wc-block-cart-item__image a,
+.woocommerce-cart .wc-block-components-product-image img {
+  border-radius: 0 !important;
+}
+
+/* zarovnanie riadku */
+.woocommerce-cart .wc-block-cart-items__row {
+  align-items: flex-start;
+  padding-top: 18px;
+  padding-bottom: 18px;
+}
+
+/* názov produktu */
+.woocommerce-cart .wc-block-components-product-name {
+  font-size: 1rem;
+  line-height: 1.35;
+  font-weight: 400;
+  margin-bottom: 6px;
+}
+
+/* ========================================
+   QUANTITY
+======================================== */
+
+.woocommerce-cart .wc-block-components-quantity-selector {
+  border: 1px solid var(--jt-line, #dbe3ee);
+  border-radius: 10px;
+  min-height: 32px;
+  overflow: hidden;
+}
+
+.woocommerce-cart .wc-block-components-quantity-selector input,
+.woocommerce-cart .wc-block-components-quantity-selector .wc-block-components-quantity-selector__input {
+  border: 0 !important;
+  box-shadow: none !important;
+  font-size: 1rem;
+  color: var(--jt-ink, #0f172a);
+}
+
+.woocommerce-cart .wc-block-components-quantity-selector button,
+.woocommerce-cart .wc-block-components-quantity-selector .wc-block-components-quantity-selector__button {
+  color: var(--jt-ink, #0f172a);
+  background: #fff;
+  border: 0 !important;
+  transition: background-color 0.18s ease, color 0.18s ease;
+}
+
+.woocommerce-cart .wc-block-components-quantity-selector button:hover,
+.woocommerce-cart .wc-block-components-quantity-selector button:focus-visible,
+.woocommerce-cart .wc-block-components-quantity-selector .wc-block-components-quantity-selector__button:hover,
+.woocommerce-cart .wc-block-components-quantity-selector .wc-block-components-quantity-selector__button:focus-visible {
+  background: #eff6ff;
+  color: var(--jt-primary-dark, #0f3b78);
+}
+
+/* remove item */
+.woocommerce-cart .wc-block-cart-item__remove-link,
+.woocommerce-cart .wc-block-components-product-metadata__description a {
+  color: var(--jt-ink, #0f172a) !important;
+  text-decoration: none !important;
+  transition: color 0.18s ease;
+}
+
+.woocommerce-cart .wc-block-cart-item__remove-link:hover,
+.woocommerce-cart .wc-block-cart-item__remove-link:focus-visible {
+  color: var(--jt-primary-dark, #0f3b78) !important;
+  text-decoration: none !important;
+}
+
+/* ========================================
+   SIDEBAR / SUMMARY
+======================================== */
+
+.woocommerce-cart .wc-block-cart__sidebar .wc-block-components-sidebar-layout,
+.woocommerce-cart .wc-block-cart__sidebar .wc-block-components-totals-wrapper,
+.woocommerce-cart .wc-block-cart__sidebar .wc-block-components-panel,
+.woocommerce-checkout .wc-block-checkout__sidebar .wc-block-components-sidebar-layout,
+.woocommerce-checkout .wc-block-checkout__sidebar .wc-block-components-totals-wrapper,
+.woocommerce-checkout .wc-block-checkout__sidebar .wc-block-components-panel {
+  color: var(--jt-ink, #0f172a);
+}
+
+.woocommerce-cart .wc-block-components-panel__button,
+.woocommerce-checkout .wc-block-components-panel__button {
+  padding-left: 0;
+  padding-right: 0;
+  font-weight: 400;
+  text-decoration: none !important;
+}
+
+.woocommerce-cart .wc-block-components-panel__button:hover,
+.woocommerce-cart .wc-block-components-panel__button:focus-visible,
+.woocommerce-checkout .wc-block-components-panel__button:hover,
+.woocommerce-checkout .wc-block-components-panel__button:focus-visible {
+  color: var(--jt-primary-dark, #0f3b78) !important;
+  text-decoration: none !important;
+}
+
+/* coupon form – lepšie zarovnanie */
+.woocommerce-cart .wc-block-components-totals-coupon__form {
+  display: flex;
+  align-items: flex-end;
+  gap: 10px;
+}
+
+/* ========================================
+   INPUTY
+======================================== */
+
+.woocommerce-cart .wc-block-components-text-input input,
+.woocommerce-cart .wc-block-components-text-input.is-active input,
+.woocommerce-cart .wc-block-components-totals-coupon__form input[type="text"],
+.woocommerce-checkout .wc-block-components-text-input input,
+.woocommerce-checkout .wc-block-components-text-input.is-active input,
+.woocommerce-checkout .wc-block-components-form .wc-block-components-text-input input,
+.woocommerce-account .woocommerce-form-row input,
+.woocommerce-account .woocommerce-form-row textarea,
+.woocommerce-account .woocommerce-form-row select {
+  min-height: 44px;
+  padding: 10px 14px;
+  border: 1px solid var(--jt-line, #dbe3ee) !important;
+  border-radius: 10px;
+  background: #fff;
+  color: var(--jt-ink, #0f172a);
+  box-shadow: none !important;
+  box-sizing: border-box;
+}
+
+.woocommerce-cart .wc-block-components-text-input input:focus,
+.woocommerce-cart .wc-block-components-text-input.is-active input:focus,
+.woocommerce-cart .wc-block-components-totals-coupon__form input[type="text"]:focus,
+.woocommerce-checkout .wc-block-components-text-input input:focus,
+.woocommerce-checkout .wc-block-components-text-input.is-active input:focus,
+.woocommerce-checkout .wc-block-components-form .wc-block-components-text-input input:focus,
+.woocommerce-account .woocommerce-form-row input:focus,
+.woocommerce-account .woocommerce-form-row textarea:focus,
+.woocommerce-account .woocommerce-form-row select:focus {
+  border-color: #3095e8 !important;
+  box-shadow: 0 0 0 2px rgba(48, 149, 232, 0.08) !important;
+  outline: none;
+}
+
+/* ========================================
+   BUTTONS
+======================================== */
+
+.woocommerce-cart .wc-block-components-button,
+.woocommerce-cart .wc-block-cart__submit-button,
+.woocommerce-cart .wc-block-components-totals-coupon__button,
+.woocommerce-cart .wc-block-components-button.wp-element-button,
+.woocommerce-checkout .wc-block-components-button,
+.woocommerce-checkout .wc-block-checkout__actions_row .wc-block-components-button,
+.woocommerce-checkout .wc-block-components-button.wp-element-button,
+.woocommerce-account .button,
+.woocommerce-account button,
+.woocommerce-account .woocommerce-button {
+  display: inline-flex !important;
+  align-items: center;
+  justify-content: center;
+  min-height: 40px;
+  padding: 0 16px !important;
+  border: 0 !important;
+  border-radius: 999px !important;
+  background: linear-gradient(135deg, #3095e8 0%, #194b9b 100%) !important;
+  color: #fff !important;
+  font-size: 0.92rem;
+  font-weight: 700;
+  line-height: 1;
+  text-decoration: none !important;
+  box-shadow: 0 2px 6px rgba(29, 78, 216, 0.12);
+  transition: filter 0.18s ease, opacity 0.18s ease;
+}
+
+.woocommerce-cart .wc-block-components-button:hover,
+.woocommerce-cart .wc-block-components-button:focus-visible,
+.woocommerce-cart .wc-block-cart__submit-button:hover,
+.woocommerce-cart .wc-block-cart__submit-button:focus-visible,
+.woocommerce-cart .wc-block-components-totals-coupon__button:hover,
+.woocommerce-cart .wc-block-components-totals-coupon__button:focus-visible,
+.woocommerce-cart .wc-block-components-button.wp-element-button:hover,
+.woocommerce-cart .wc-block-components-button.wp-element-button:focus-visible,
+.woocommerce-checkout .wc-block-components-button:hover,
+.woocommerce-checkout .wc-block-components-button:focus-visible,
+.woocommerce-checkout .wc-block-components-button.wp-element-button:hover,
+.woocommerce-checkout .wc-block-components-button.wp-element-button:focus-visible,
+.woocommerce-account .button:hover,
+.woocommerce-account .button:focus-visible,
+.woocommerce-account button:hover,
+.woocommerce-account button:focus-visible,
+.woocommerce-account .woocommerce-button:hover,
+.woocommerce-account .woocommerce-button:focus-visible {
+  color: #fff !important;
+  text-decoration: none !important;
+  filter: brightness(1.08);
+  opacity: 1;
+  box-shadow: 0 2px 6px rgba(29, 78, 216, 0.12);
+}
+
+/* checkout button */
+.woocommerce-cart .wc-block-cart__submit-container {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 22px;
+}
+
+.woocommerce-cart .wc-block-cart__submit-button {
+  min-width: 220px;
+}
+
+/* coupon button – menší a nižšie */
+.woocommerce-cart .wc-block-components-totals-coupon__button {
+  align-self: flex-end !important;
+  min-height: 36px !important;
+  height: 36px !important;
+  margin-bottom: 1px;
+  padding: 0 14px !important;
+  font-size: 0.85rem !important;
+  border-radius: 999px !important;
+}
+
+/* ========================================
+   ACCOUNT PAGE
+======================================== */
+
+.woocommerce-account .woocommerce {
+  display: grid;
+  grid-template-columns: 260px minmax(0, 1fr);
+  gap: 28px;
+}
+
+.woocommerce-account .woocommerce-MyAccount-navigation ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.woocommerce-account .woocommerce-MyAccount-navigation ul li + li {
+  margin-top: 8px;
+}
+
+.woocommerce-account .woocommerce-MyAccount-navigation a {
+  display: block;
+  padding: 10px 14px;
+  border: 1px solid #d9e9fb;
+  border-radius: 12px;
+  text-decoration: none;
+  transition: border-color 0.18s ease, color 0.18s ease, background-color 0.18s ease;
+}
+
+.woocommerce-account .woocommerce-MyAccount-navigation a:hover,
+.woocommerce-account .woocommerce-MyAccount-navigation a:focus-visible,
+.woocommerce-account .woocommerce-MyAccount-navigation .is-active a {
+  color: var(--jt-primary-dark, #0f3b78) !important;
+  border-color: #3095e8 !important;
+  background: #f8fbff;
+  text-decoration: none !important;
+}
+
+/* ========================================
+   CHECKOUT
+======================================== */
+
+.woocommerce-checkout .wc-block-checkout {
+  color: var(--jt-ink, #0f172a);
+}
+
+.woocommerce-checkout .wc-block-components-address-card,
+.woocommerce-checkout .wc-block-components-radio-control__option,
+.woocommerce-checkout .wc-block-checkout__shipping-method-option,
+.woocommerce-checkout .wc-block-checkout__payment-method {
+  border-color: #d9e9fb !important;
+  border-radius: 12px;
+}
+
+.woocommerce-checkout .wc-block-components-checkbox label,
+.woocommerce-checkout .wc-block-components-radio-control__label,
+.woocommerce-checkout .wc-block-components-address-card__address-section {
+  color: var(--jt-ink, #0f172a);
+}
+
+/* ========================================
+   RENAME LABEL – estimated total
+======================================== */
+
+.woocommerce-cart .wc-block-components-totals-footer-item .wc-block-components-totals-footer-item__label {
+  font-size: 0 !important;
+  line-height: 0 !important;
+}
+
+.woocommerce-cart .wc-block-components-totals-footer-item .wc-block-components-totals-footer-item__label::before {
+  content: "Cena spolu";
+  font-size: 1rem;
+  line-height: 1.2;
+  color: var(--jt-ink, #0f172a);
+}
+
+/* ========================================
+   MOBILE
+======================================== */
+
+@media (max-width: 900px) {
+  .woocommerce-account .woocommerce {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 640px) {
+  .woocommerce-cart,
+  .woocommerce-checkout,
+  .woocommerce-account {
+    --jt-shop-page-gap: 20px;
+  }
+
+  .woocommerce-cart .site-main,
+  .woocommerce-checkout .site-main,
+  .woocommerce-account .site-main {
+    padding: 20px 0 24px;
+  }
+
+  .woocommerce-cart .wc-block-cart-item__image,
+  .woocommerce-cart .wc-block-cart-item__image a {
+    width: 76px;
+    min-width: 76px;
+    flex-basis: 76px;
+    height: 76px;
+  }
+
+  .woocommerce-cart .wc-block-cart__submit-container {
+    justify-content: stretch;
+  }
+
+  .woocommerce-cart .wc-block-cart__submit-button {
+    width: 100%;
+    min-width: 0;
+  }
+
+  .woocommerce-cart .wc-block-components-totals-coupon__form {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .woocommerce-cart .wc-block-components-totals-coupon__button {
+    width: 100%;
+    margin-bottom: 0;
+  }
+}

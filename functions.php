@@ -292,4 +292,67 @@ if (!function_exists('jtcollector_get_wishlist_url')) {
 	}
 }
 
+/**
+ * Shop pages styles (cart, checkout, my account...)
+ */
+function jtcollector_enqueue_shop_styles() {
+	if (is_cart() || is_checkout() || is_account_page()) {
+		wp_enqueue_style(
+			'jtcollector-shop',
+			get_template_directory_uri() . '/assets/css/shop.css',
+			array(),
+			filemtime(get_template_directory() . '/assets/css/shop.css')
+		);
+	}
+}
+add_action('wp_enqueue_scripts', 'jtcollector_enqueue_shop_styles', 20);
+
+// Preložiť "Estimated total" v košíku na "Cena spolu"
+/**
+ * Cart block – premenovanie textov vo WooCommerce Blocks
+ */
+function jtcollector_cart_block_text_overrides(): void
+{
+	if (!is_cart()) {
+		return;
+	}
+	?>
+	<script>
+		document.addEventListener('DOMContentLoaded', function () {
+			function replaceCartTexts() {
+				const selectors = [
+					'.wc-block-components-totals-footer-item .wc-block-components-totals-item__label',
+					'.wc-block-components-totals-footer-item__label'
+				];
+
+				selectors.forEach(function (selector) {
+					document.querySelectorAll(selector).forEach(function (el) {
+						const text = el.textContent.trim();
+
+						if (
+							text === 'Odhadovaná suma' ||
+							text === 'Estimated total'
+						) {
+							el.textContent = 'Cena spolu';
+						}
+					});
+				});
+			}
+
+			replaceCartTexts();
+
+			const observer = new MutationObserver(function () {
+				replaceCartTexts();
+			});
+
+			observer.observe(document.body, {
+				childList: true,
+				subtree: true
+			});
+		});
+	</script>
+	<?php
+}
+add_action('wp_footer', 'jtcollector_cart_block_text_overrides', 100);
+
 add_action('wp', 'jtcollector_single_related_products_hooks');
