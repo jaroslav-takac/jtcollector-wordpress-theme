@@ -355,4 +355,12 @@ function jtcollector_cart_block_text_overrides(): void
 }
 add_action('wp_footer', 'jtcollector_cart_block_text_overrides', 100);
 
+// Prispôsobiť text v prázdnom košíku a zobraziť odporúčané produkty
+add_shortcode('jt_home_featured_products', 'jtcollector_home_featured_products_shortcode');
+function jtcollector_home_featured_products_shortcode() {
+	ob_start();
+	get_template_part('template-parts/home-featured-products');
+	return ob_get_clean();
+}
+
 add_action('wp', 'jtcollector_single_related_products_hooks');

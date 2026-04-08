@@ -2,12 +2,9 @@
    HOME – featured / hit products section
 ======================================== */
 
-.home {
+.shop-home-entry {
   --jt-home-featured-max: 1360px;
   --jt-home-featured-gap: 32px;
-}
-
-.shop-home-entry {
   padding: 12px 0 24px;
 }
 
