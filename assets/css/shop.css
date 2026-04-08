@@ -322,7 +322,8 @@
 .jt-checkout button,
 .jt-checkout .woocommerce-button,
 .jt-checkout input.button,
-.jt-checkout a.button {
+.jt-checkout a.button,
+.jt-checkout .jt-back-to-cart {
   display: inline-flex !important;
   align-items: center;
   justify-content: center;
@@ -337,7 +338,7 @@
   line-height: 1;
   text-decoration: none !important;
   box-shadow: 0 2px 6px rgba(29, 78, 216, 0.12);
-  transition: filter 0.18s ease, opacity 0.18s ease;
+  transition: filter 0.18s ease, opacity 0.18s ease, background-color 0.18s ease, color 0.18s ease;
 }
 
 .woocommerce-cart .wc-block-components-button:hover,
@@ -365,7 +366,9 @@
 .jt-checkout input.button:hover,
 .jt-checkout input.button:focus-visible,
 .jt-checkout a.button:hover,
-.jt-checkout a.button:focus-visible {
+.jt-checkout a.button:focus-visible,
+.jt-checkout .jt-back-to-cart:hover,
+.jt-checkout .jt-back-to-cart:focus-visible {
   color: #fff !important;
   text-decoration: none !important;
   filter: brightness(1.08);
@@ -1017,19 +1020,6 @@
   min-width: 210px;
 }
 
-.jt-checkout .jt-back-to-cart {
-  background: #eef6ff !important;
-  color: #194b9b !important;
-  box-shadow: none !important;
-}
-
-.jt-checkout .jt-back-to-cart:hover,
-.jt-checkout .jt-back-to-cart:focus-visible {
-  color: #194b9b !important;
-  background: #dbeeff !important;
-  text-decoration: none !important;
-}
-
 /* remove duplicate coupon toggle */
 .jt-checkout .woocommerce-form-coupon-toggle {
   display: none !important;
@@ -1049,6 +1039,107 @@
   font-size: 1rem;
   line-height: 1.2;
   color: var(--jt-ink, #0f172a);
+}
+
+/* ========================================
+   CART BLOCK – empty cart custom content
+======================================== */
+
+/* skryť default ikonku a default headline prázdneho košíka */
+.woocommerce-cart .wc-block-cart__empty-cart__icon,
+.woocommerce-cart .wc-block-components-empty-cart__icon,
+.woocommerce-cart .wc-block-cart__empty-cart__title,
+.woocommerce-cart .wc-block-components-empty-cart__title {
+  display: none !important;
+}
+
+/* zrušiť len zbytočný horný spacing natívneho empty cart wrappera */
+.woocommerce-cart .wc-block-cart__empty-cart,
+.woocommerce-cart .wc-block-components-empty-cart {
+  padding-top: 0 !important;
+}
+
+/* ----------------------------------------
+   Intro text
+---------------------------------------- */
+
+.woocommerce-cart .jt-empty-cart-intro {
+  max-width: 900px;
+  margin: 0 auto 28px;
+  text-align: center;
+}
+
+.woocommerce-cart .jt-empty-cart-intro h2,
+.woocommerce-cart .jt-empty-cart-intro h3 {
+  margin: 0 0 12px;
+  font-size: clamp(1.8rem, 2.4vw, 2.35rem);
+  line-height: 1.1;
+  font-weight: 800;
+  color: var(--jt-ink, #0f172a);
+  text-align: center;
+}
+
+.woocommerce-cart .jt-empty-cart-intro p {
+  margin: 0;
+  font-size: 1.02rem;
+  line-height: 1.55;
+  color: var(--jt-muted, #64748b);
+  text-align: center;
+}
+
+/* ----------------------------------------
+   Featured sekcia – výnimka len pre empty cart
+---------------------------------------- */
+
+.woocommerce-cart .jt-empty-cart-featured {
+  margin-top: 8px;
+}
+
+.woocommerce-cart .jt-empty-cart-featured .shop-home-entry {
+  padding: 0 !important;
+  margin: 0 !important;
+}
+
+.woocommerce-cart .jt-empty-cart-featured .shop-home-entry__inner {
+  width: 100% !important;
+  max-width: none !important;
+  margin: 0 !important;
+}
+
+.woocommerce-cart .jt-empty-cart-featured .shop-home-entry__main {
+  margin: 0 !important;
+}
+
+.woocommerce-cart .jt-empty-cart-featured .shop-home-entry__button,
+.woocommerce-cart .jt-empty-cart-featured .shop-home-entry__button:visited,
+.woocommerce-cart .jt-empty-cart-featured .shop-home-entry__button:hover,
+.woocommerce-cart .jt-empty-cart-featured .shop-home-entry__button:focus-visible {
+  color: #fff !important;
+  text-decoration: none !important;
+}
+
+.woocommerce-cart .jt-empty-cart-featured ul.products li.product .woocommerce-loop-product__title {
+  text-align: left !important;
+}
+
+.woocommerce-cart .jt-empty-cart-featured ul.products li.product .button,
+.woocommerce-cart .jt-empty-cart-featured ul.products li.product a.button,
+.woocommerce-cart .jt-empty-cart-featured ul.products li.product .add_to_cart_button,
+.woocommerce-cart .jt-empty-cart-featured ul.products li.product .ajax_add_to_cart,
+.woocommerce-cart .jt-empty-cart-featured ul.products li.product .button:visited,
+.woocommerce-cart .jt-empty-cart-featured ul.products li.product a.button:visited,
+.woocommerce-cart .jt-empty-cart-featured ul.products li.product .add_to_cart_button:visited,
+.woocommerce-cart .jt-empty-cart-featured ul.products li.product .ajax_add_to_cart:visited,
+.woocommerce-cart .jt-empty-cart-featured ul.products li.product .button:hover,
+.woocommerce-cart .jt-empty-cart-featured ul.products li.product a.button:hover,
+.woocommerce-cart .jt-empty-cart-featured ul.products li.product .add_to_cart_button:hover,
+.woocommerce-cart .jt-empty-cart-featured ul.products li.product .ajax_add_to_cart:hover,
+.woocommerce-cart .jt-empty-cart-featured ul.products li.product .button:focus-visible,
+.woocommerce-cart .jt-empty-cart-featured ul.products li.product a.button:focus-visible,
+.woocommerce-cart .jt-empty-cart-featured ul.products li.product .add_to_cart_button:focus-visible,
+.woocommerce-cart .jt-empty-cart-featured ul.products li.product .ajax_add_to_cart:focus-visible {
+  color: #fff !important;
+  text-decoration: none !important;
 }
 
 /* ========================================
@@ -1103,6 +1194,10 @@
   .woocommerce-cart .wc-block-components-totals-coupon__button {
     width: 100%;
     margin-bottom: 0;
+  }
+
+  .woocommerce-cart .jt-empty-cart-intro {
+    margin-bottom: 22px;
   }
 
   .jt-checkout__box {
