@@ -141,3 +141,27 @@ a:hover{
     font-size: 1.75rem;
   }
 }
+
+/* ========================================
+   LAYOUT – footer dole len pri krátkom obsahu
+======================================== */
+
+body {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.site-header,
+.site-main,
+.site-footer {
+  width: 100%;
+}
+
+.site-main {
+  flex: 1 0 auto;
+}
+
+.site-footer {
+  margin-top: auto;
+}
