@@ -363,4 +363,13 @@ function jtcollector_home_featured_products_shortcode() {
 	return ob_get_clean();
 }
 
+/**
+ * Skryje WordPress admin lištu pre zákazníkov a bežných používateľov na frontende.
+ */
+add_action('after_setup_theme', function () {
+	if (!is_admin() && !current_user_can('administrator')) {
+		show_admin_bar(false);
+	}
+});
+
 add_action('wp', 'jtcollector_single_related_products_hooks');
