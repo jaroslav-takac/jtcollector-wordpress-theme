@@ -689,7 +689,177 @@
    LOGIN / REGISTER
 ======================================== */
 
+.woocommerce-account .site-main .woocommerce {
+  padding: 18px !important;
+}
 
+.woocommerce-account:not(.logged-in) .woocommerce {
+  display: block !important;
+}
+
+.woocommerce-account:not(.logged-in) .woocommerce::before,
+.woocommerce-account:not(.logged-in) .woocommerce::after,
+.woocommerce-account:not(.logged-in) .col2-set::before,
+.woocommerce-account:not(.logged-in) .col2-set::after {
+  content: none !important;
+  display: none !important;
+}
+
+.woocommerce-account:not(.logged-in) .col2-set {
+  display: grid !important;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr) !important;
+  gap: 28px !important;
+  width: 100% !important;
+  max-width: 100% !important;
+  margin: 0 !important;
+  align-items: stretch;
+}
+
+.woocommerce-account:not(.logged-in) .col-1,
+.woocommerce-account:not(.logged-in) .col-2,
+.woocommerce-account:not(.logged-in) .u-column1,
+.woocommerce-account:not(.logged-in) .u-column2 {
+  float: none !important;
+  width: 100% !important;
+  max-width: 100% !important;
+  min-width: 0 !important;
+  margin: 0 !important;
+}
+
+.woocommerce-account:not(.logged-in) .u-column1 h2,
+.woocommerce-account:not(.logged-in) .u-column2 h2,
+.woocommerce-account:not(.logged-in) .col-1 h2,
+.woocommerce-account:not(.logged-in) .col-2 h2 {
+  margin: 0 0 16px !important;
+  font-size: 1.75rem;
+  line-height: 1.15;
+  font-weight: 800;
+  color: var(--jt-ink, #0f172a);
+}
+
+.woocommerce-account:not(.logged-in) .woocommerce-form-login,
+.woocommerce-account:not(.logged-in) .woocommerce-form-register {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  min-height: 100%;
+  margin: 0;
+  padding: 22px 22px 20px;
+  background: #fff;
+  border: 1px solid #d9e9fb;
+  border-radius: 20px;
+  box-sizing: border-box;
+  box-shadow: 0 4px 16px rgba(15, 23, 42, 0.04);
+}
+
+.woocommerce-account:not(.logged-in) .woocommerce-form-row,
+.woocommerce-account:not(.logged-in) .form-row {
+  width: 100% !important;
+  float: none !important;
+  clear: both !important;
+  margin: 0 0 12px !important;
+}
+
+.woocommerce-account:not(.logged-in) .woocommerce-form-row:last-child,
+.woocommerce-account:not(.logged-in) .form-row:last-child {
+  margin-bottom: 0 !important;
+}
+
+.woocommerce-account:not(.logged-in) .woocommerce-form-row label,
+.woocommerce-account:not(.logged-in) .form-row label {
+  display: block;
+  margin-bottom: 4px;
+  font-size: 0.92rem;
+  line-height: 1.35;
+  font-weight: 600;
+  color: var(--jt-ink, #0f172a);
+}
+
+.woocommerce-account:not(.logged-in) .woocommerce-form-login input,
+.woocommerce-account:not(.logged-in) .woocommerce-form-register input,
+.woocommerce-account:not(.logged-in) .woocommerce-form-login textarea,
+.woocommerce-account:not(.logged-in) .woocommerce-form-register textarea,
+.woocommerce-account:not(.logged-in) .woocommerce-form-login select,
+.woocommerce-account:not(.logged-in) .woocommerce-form-register select {
+  width: 100% !important;
+}
+
+.woocommerce-account:not(.logged-in) .woocommerce-form-login .password-input,
+.woocommerce-account:not(.logged-in) .woocommerce-form-register .password-input {
+  display: block;
+  width: 100%;
+}
+
+.woocommerce-account:not(.logged-in) .woocommerce-form-login .show-password-input,
+.woocommerce-account:not(.logged-in) .woocommerce-form-register .show-password-input {
+  top: 50%;
+  transform: translateY(-50%);
+  right: 12px;
+}
+
+.woocommerce-account:not(.logged-in) .woocommerce-form-login .woocommerce-form-login__rememberme {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-weight: 600;
+  line-height: 1.35;
+  cursor: pointer;
+}
+
+.woocommerce-account:not(.logged-in) .woocommerce-form-login .woocommerce-form-login__rememberme input {
+  width: auto !important;
+  margin: 0;
+}
+
+.woocommerce-account:not(.logged-in) .woocommerce-LostPassword {
+  margin: 12px 0 0;
+}
+
+.woocommerce-account:not(.logged-in) .woocommerce-LostPassword a,
+.woocommerce-account:not(.logged-in) .woocommerce-form-register a {
+  text-decoration: none !important;
+}
+
+.woocommerce-account:not(.logged-in) .woocommerce-LostPassword a:hover,
+.woocommerce-account:not(.logged-in) .woocommerce-LostPassword a:focus-visible,
+.woocommerce-account:not(.logged-in) .woocommerce-form-register a:hover,
+.woocommerce-account:not(.logged-in) .woocommerce-form-register a:focus-visible {
+  text-decoration: none !important;
+}
+
+.woocommerce-account:not(.logged-in) .woocommerce-privacy-policy-text,
+.woocommerce-account:not(.logged-in) .woocommerce-form-register p {
+  line-height: 1.65;
+}
+
+.woocommerce-account:not(.logged-in) .woocommerce-form-login .button,
+.woocommerce-account:not(.logged-in) .woocommerce-form-register .button {
+  margin-top: 6px;
+}
+
+.woocommerce-account:not(.logged-in) .woocommerce-notices-wrapper {
+  margin-bottom: 18px;
+}
+
+.woocommerce-account:not(.logged-in) .woocommerce-info,
+.woocommerce-account:not(.logged-in) .woocommerce-message,
+.woocommerce-account:not(.logged-in) .woocommerce-error {
+  margin-bottom: 18px;
+  border-radius: 12px;
+}
+
+.woocommerce-account:not(.logged-in) .woocommerce-password-strength {
+  margin-top: 8px;
+  border-radius: 10px;
+  font-size: 0.9rem;
+}
+
+.woocommerce-account:not(.logged-in) .woocommerce-password-hint {
+  margin-top: 8px;
+  font-size: 0.9rem;
+  line-height: 1.55;
+  color: var(--jt-muted, #64748b);
+}
 
 /* ========================================
    CHECKOUT
@@ -1272,6 +1442,11 @@
   .jt-checkout__top {
     grid-template-columns: 1fr;
   }
+
+  .woocommerce-account:not(.logged-in) .col2-set {
+    grid-template-columns: 1fr !important;
+    gap: 22px !important;
+  }
 }
 
 @media (max-width: 640px) {
@@ -1369,5 +1544,19 @@
   .woocommerce-account .woocommerce-MyAccount-content address {
     font-size: 0.97rem;
     line-height: 1.65;
+  }
+
+  .woocommerce-account:not(.logged-in) .woocommerce-form-login,
+  .woocommerce-account:not(.logged-in) .woocommerce-form-register {
+    padding: 18px 16px 16px;
+    border-radius: 18px;
+  }
+
+  .woocommerce-account:not(.logged-in) .u-column1 h2,
+  .woocommerce-account:not(.logged-in) .u-column2 h2,
+  .woocommerce-account:not(.logged-in) .col-1 h2,
+  .woocommerce-account:not(.logged-in) .col-2 h2 {
+    font-size: 1.45rem;
+    margin-bottom: 14px !important;
   }
 }
