@@ -1431,6 +1431,317 @@
 }
 
 /* ========================================
+   WISHLIST
+======================================== */
+
+.yith-wcwl-form,
+.yith-wcwl-form * {
+  box-sizing: border-box;
+}
+
+/* plugin title netreba, vlastný H1 už máme na stránke */
+.yith-wcwl-form .wishlist-title,
+.yith-wcwl-form .wishlist-title-container {
+  margin: 0 0 18px;
+}
+
+.yith-wcwl-form .wishlist-title h1,
+.yith-wcwl-form .wishlist-title h2,
+.yith-wcwl-form .hidden-title-form {
+  display: none !important;
+}
+
+/* prázdne notice wrappery */
+.yith-wcwl-form .wishlist-notices-wrapper:empty,
+.yith-wcwl-form .yith-wcwl-notice:empty {
+  display: none !important;
+}
+
+/* hlavný box wishlistu */
+.yith-wcwl-form table.wishlist_table,
+.yith-wcwl-form table.shop_table.wishlist_table,
+.yith-wcwl-form .wishlist_table {
+  width: 100%;
+  margin: 0;
+  border-collapse: separate !important;
+  border-spacing: 0 !important;
+  border: 1px solid #d9e9fb !important;
+  border-radius: 18px;
+  overflow: hidden;
+  background: #fff;
+  box-shadow: 0 4px 16px rgba(15, 23, 42, 0.04);
+}
+
+/* zrušenie default borderov/tabuľkových tieňov */
+.yith-wcwl-form table.wishlist_table th,
+.yith-wcwl-form table.wishlist_table td,
+.yith-wcwl-form table.shop_table.wishlist_table th,
+.yith-wcwl-form table.shop_table.wishlist_table td,
+.yith-wcwl-form .wishlist_table th,
+.yith-wcwl-form .wishlist_table td {
+  box-shadow: none !important;
+}
+
+/* header ako pri zhrnutí objednávky */
+.yith-wcwl-form table.wishlist_table thead th,
+.yith-wcwl-form table.shop_table.wishlist_table thead th,
+.yith-wcwl-form .wishlist_table thead th {
+  padding: 12px 14px;
+  border: 0 !important;
+  border-bottom: 1px solid #d9e9fb !important;
+  background: #f8fbff !important;
+  color: #194b9b !important;
+  font-size: 0.92rem;
+  line-height: 1.25;
+  font-weight: 800;
+  text-transform: none;
+  vertical-align: middle;
+}
+
+/* body bunky */
+.yith-wcwl-form table.wishlist_table tbody td,
+.yith-wcwl-form table.shop_table.wishlist_table tbody td,
+.yith-wcwl-form .wishlist_table tbody td {
+  padding: 14px 14px;
+  border: 0 !important;
+  border-top: 1px solid #d9e9fb !important;
+  vertical-align: middle;
+  background: #fff;
+  color: var(--jt-ink, #0f172a);
+  font-size: 0.96rem;
+  line-height: 1.4;
+}
+
+/* nech sa prvý riadok nebije s headerom */
+.yith-wcwl-form table.wishlist_table tbody tr:first-child td,
+.yith-wcwl-form table.shop_table.wishlist_table tbody tr:first-child td,
+.yith-wcwl-form .wishlist_table tbody tr:first-child td {
+  border-top: 0 !important;
+}
+
+/* jemný hover */
+.yith-wcwl-form table.wishlist_table tbody tr:hover td,
+.yith-wcwl-form table.shop_table.wishlist_table tbody tr:hover td,
+.yith-wcwl-form .wishlist_table tbody tr:hover td {
+  background: #fcfdff;
+}
+
+/* odkazy na produkty */
+.yith-wcwl-form .wishlist_table .product-name a,
+.yith-wcwl-form .wishlist_table .product-name a:visited,
+.yith-wcwl-form table.wishlist_table .product-name a,
+.yith-wcwl-form table.wishlist_table .product-name a:visited {
+  color: var(--jt-ink, #0f172a) !important;
+  text-decoration: none !important;
+  font-size: 1rem;
+  line-height: 1.35;
+  font-weight: 400;
+  transition: color 0.18s ease;
+}
+
+.yith-wcwl-form .wishlist_table .product-name a:hover,
+.yith-wcwl-form .wishlist_table .product-name a:focus-visible,
+.yith-wcwl-form table.wishlist_table .product-name a:hover,
+.yith-wcwl-form table.wishlist_table .product-name a:focus-visible {
+  color: var(--jt-primary-dark, #0f3b78) !important;
+  text-decoration: none !important;
+}
+
+/* ceny */
+.yith-wcwl-form .wishlist_table .product-price,
+.yith-wcwl-form .wishlist_table .product-price .amount,
+.yith-wcwl-form .wishlist_table .product-price ins,
+.yith-wcwl-form .wishlist_table .product-price bdi,
+.yith-wcwl-form table.wishlist_table .product-price,
+.yith-wcwl-form table.wishlist_table .product-price .amount,
+.yith-wcwl-form table.wishlist_table .product-price bdi {
+  color: var(--jt-ink, #0f172a) !important;
+  font-weight: 400;
+}
+
+/* sklad */
+.yith-wcwl-form .wishlist_table .product-stock-status,
+.yith-wcwl-form .wishlist_table .product-stock-status span,
+.yith-wcwl-form .wishlist_table .wishlist-in-stock,
+.yith-wcwl-form .wishlist_table .in-stock,
+.yith-wcwl-form table.wishlist_table .product-stock-status,
+.yith-wcwl-form table.wishlist_table .product-stock-status span {
+  color: #15803d !important;
+  font-weight: 600;
+}
+
+/* thumbnail stĺpec */
+.yith-wcwl-form .wishlist_table .product-thumbnail,
+.yith-wcwl-form table.wishlist_table .product-thumbnail {
+  width: 96px;
+  min-width: 96px;
+}
+
+/* frame obrázka ako v košíku */
+.yith-wcwl-form .wishlist_table .product-thumbnail a,
+.yith-wcwl-form table.wishlist_table .product-thumbnail a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 96px;
+  height: 96px;
+  padding: 6px;
+  background: #f8fafc;
+  border: 1px solid #d9e9fb;
+  border-radius: 0;
+  overflow: hidden;
+}
+
+.yith-wcwl-form .wishlist_table .product-thumbnail img,
+.yith-wcwl-form table.wishlist_table .product-thumbnail img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  object-position: center;
+  border-radius: 0 !important;
+  box-shadow: none !important;
+}
+
+/* remove X */
+.yith-wcwl-form .wishlist_table .product-remove,
+.yith-wcwl-form table.wishlist_table .product-remove {
+  width: 34px;
+  min-width: 34px;
+  text-align: center;
+}
+
+.yith-wcwl-form .wishlist_table .product-remove a,
+.yith-wcwl-form .wishlist_table .product-remove a:visited,
+.yith-wcwl-form table.wishlist_table .product-remove a,
+.yith-wcwl-form table.wishlist_table .product-remove a:visited {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  color: #b91c1c !important;
+  font-size: 1.5rem;
+  line-height: 1;
+  text-decoration: none !important;
+  border-radius: 999px;
+  transition: background-color 0.18s ease, color 0.18s ease;
+}
+
+.yith-wcwl-form .wishlist_table .product-remove a:hover,
+.yith-wcwl-form .wishlist_table .product-remove a:focus-visible,
+.yith-wcwl-form table.wishlist_table .product-remove a:hover,
+.yith-wcwl-form table.wishlist_table .product-remove a:focus-visible {
+  background: #fef2f2;
+  color: #991b1b !important;
+  text-decoration: none !important;
+}
+
+/* CTA tlačidlá */
+.yith-wcwl-form .wishlist_table .product-add-to-cart a,
+.yith-wcwl-form .wishlist_table .product-add-to-cart a.button,
+.yith-wcwl-form .wishlist_table .product-add-to-cart .add_to_cart,
+.yith-wcwl-form .wishlist_table .product-add-to-cart .single_add_to_cart_button,
+.yith-wcwl-form table.wishlist_table .product-add-to-cart a,
+.yith-wcwl-form table.wishlist_table .product-add-to-cart a.button,
+.yith-wcwl-form table.wishlist_table .product-add-to-cart .add_to_cart {
+  display: inline-flex !important;
+  align-items: center;
+  justify-content: center;
+  min-height: 40px;
+  padding: 0 18px !important;
+  border: 0 !important;
+  border-radius: 999px !important;
+  background: linear-gradient(135deg, #3095e8 0%, #194b9b 100%) !important;
+  color: #fff !important;
+  font-size: 0.92rem;
+  font-weight: 700;
+  line-height: 1;
+  text-decoration: none !important;
+  box-shadow: 0 2px 6px rgba(29, 78, 216, 0.12);
+  transition: filter 0.18s ease, opacity 0.18s ease;
+}
+
+.yith-wcwl-form .wishlist_table .product-add-to-cart a:hover,
+.yith-wcwl-form .wishlist_table .product-add-to-cart a:focus-visible,
+.yith-wcwl-form table.wishlist_table .product-add-to-cart a:hover,
+.yith-wcwl-form table.wishlist_table .product-add-to-cart a:focus-visible {
+  color: #fff !important;
+  text-decoration: none !important;
+  filter: brightness(1.08);
+  opacity: 1;
+}
+
+/* secondary text/link od YITH */
+.yith-wcwl-form .wishlist_table .product-add-to-cart .dateadded,
+.yith-wcwl-form .wishlist_table .product-add-to-cart .added_to_cart,
+.yith-wcwl-form table.wishlist_table .product-add-to-cart .dateadded,
+.yith-wcwl-form table.wishlist_table .product-add-to-cart .added_to_cart {
+  display: inline-block;
+  margin-top: 8px;
+  color: #194b9b !important;
+  text-decoration: none !important;
+}
+
+.yith-wcwl-form .wishlist_table .product-add-to-cart .added_to_cart:hover,
+.yith-wcwl-form .wishlist_table .product-add-to-cart .added_to_cart:focus-visible,
+.yith-wcwl-form table.wishlist_table .product-add-to-cart .added_to_cart:hover,
+.yith-wcwl-form table.wishlist_table .product-add-to-cart .added_to_cart:focus-visible {
+  color: #0f3b78 !important;
+  text-decoration: none !important;
+}
+
+/* prázdny wishlist */
+.yith-wcwl-form .wishlist-empty,
+.woocommerce .wishlist-empty {
+  margin: 0;
+  padding: 18px 20px;
+  border: 1px solid #d9e9fb;
+  border-radius: 14px;
+  background: #fff;
+  color: var(--jt-muted, #64748b);
+  font-size: 1rem;
+  line-height: 1.6;
+  box-shadow: 0 4px 16px rgba(15, 23, 42, 0.04);
+}
+
+/* wishlist – skrytie hlášok */
+.yith-wcwl-form .woocommerce-message,
+.yith-wcwl-form .woocommerce-info,
+.yith-wcwl-form .woocommerce-error,
+.yith-wcwl-form .yith-wcwl-notice {
+  display: none !important;
+}
+
+/* mobile */
+@media (max-width: 640px) {
+  .yith-wcwl-form .wishlist_table .product-thumbnail,
+  .yith-wcwl-form table.wishlist_table .product-thumbnail {
+    width: 76px;
+    min-width: 76px;
+  }
+
+  .yith-wcwl-form .wishlist_table .product-thumbnail a,
+  .yith-wcwl-form table.wishlist_table .product-thumbnail a {
+    width: 76px;
+    height: 76px;
+  }
+
+  .yith-wcwl-form .wishlist_table tbody td,
+  .yith-wcwl-form table.wishlist_table tbody td {
+    padding: 10px 10px;
+    font-size: 0.93rem;
+  }
+
+  .yith-wcwl-form .wishlist_table .product-add-to-cart a,
+  .yith-wcwl-form table.wishlist_table .product-add-to-cart a {
+    min-height: 36px;
+    padding: 0 14px !important;
+    font-size: 0.86rem;
+  }
+}
+
+/* ========================================
    MOBILE
 ======================================== */
 
