@@ -1713,6 +1713,18 @@
   display: none !important;
 }
 
+/* wishlist – slovenský text tlačidla Add to cart */
+.yith-wcwl-form .product-add-to-cart a {
+  font-size: 0 !important;
+}
+
+.yith-wcwl-form .product-add-to-cart a::after {
+  content: "Pridať do košíka";
+  font-size: 0.92rem;
+  font-weight: 700;
+  line-height: 1;
+}
+
 /* mobile */
 @media (max-width: 640px) {
   .yith-wcwl-form .wishlist_table .product-thumbnail,
