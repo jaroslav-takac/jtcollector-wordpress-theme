@@ -293,6 +293,23 @@ if (!function_exists('jtcollector_get_wishlist_url')) {
 }
 
 /**
+ * Načíta štýly pre shop stránky: košík, checkout, účet a wishlist.
+ */
+if (!function_exists('jtcollector_enqueue_shop_assets')) {
+	function jtcollector_enqueue_shop_assets() {
+		if (is_cart() || is_checkout() || is_account_page() || is_page('wishlist')) {
+			wp_enqueue_style(
+				'jtcollector-shop',
+				get_template_directory_uri() . '/assets/css/shop.css',
+				array(),
+				wp_get_theme()->get('Version')
+			);
+		}
+	}
+}
+add_action('wp_enqueue_scripts', 'jtcollector_enqueue_shop_assets');
+
+/**
  * Shop pages styles (cart, checkout, my account...)
  */
 function jtcollector_enqueue_shop_styles() {
