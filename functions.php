@@ -389,4 +389,123 @@ add_action('after_setup_theme', function () {
 	}
 });
 
+/**
+ * WooCommerce pages where add-to-cart popup makes sense.
+ */
+if (!function_exists('jtcollector_should_load_add_to_cart_popup')) {
+	function jtcollector_should_load_add_to_cart_popup(): bool
+	{
+		return is_front_page() || is_home() || is_shop() || is_product_taxonomy() || is_product() || is_cart() || is_page('wishlist');
+	}
+}
+
+/**
+ * Enqueue add-to-cart popup assets.
+ */
+if (!function_exists('jtcollector_enqueue_add_to_cart_popup_assets')) {
+	function jtcollector_enqueue_add_to_cart_popup_assets(): void
+	{
+		if (!jtcollector_should_load_add_to_cart_popup()) {
+			return;
+		}
+
+		wp_enqueue_style(
+			'jtcollector-add-to-cart-popup',
+			get_template_directory_uri() . '/assets/css/add-to-cart-popup.css',
+			['jtcollector-main-style', 'jtcollector-woocommerce'],
+			jtcollector_asset_version('/assets/css/add-to-cart-popup.css')
+		);
+
+		wp_enqueue_script(
+			'jtcollector-add-to-cart-popup',
+			get_template_directory_uri() . '/assets/js/add-to-cart-popup.js',
+			['jquery'],
+			jtcollector_asset_version('/assets/js/add-to-cart-popup.js'),
+			true
+		);
+
+		wp_localize_script('jtcollector-add-to-cart-popup', 'jtAddToCartPopup', [
+			'cartUrl'          => wc_get_cart_url(),
+			'continueText'     => 'Pokračovať v nákupe',
+			'cartText'         => 'Pokračovať do košíka',
+			'successText'      => 'Produkt bol pridaný do košíka',
+			'defaultImage'     => wc_placeholder_img_src('woocommerce_thumbnail'),
+			'autoCloseDelay'   => 0,
+		]);
+	}
+}
+add_action('wp_enqueue_scripts', 'jtcollector_enqueue_add_to_cart_popup_assets', 30);
+
+/**
+ * Popup markup in footer.
+ */
+if (!function_exists('jtcollector_render_add_to_cart_popup')) {
+	function jtcollector_render_add_to_cart_popup(): void
+	{
+		if (!jtcollector_should_load_add_to_cart_popup()) {
+			return;
+		}
+		?>
+		<div class="jt-atc-popup" hidden>
+			<div class="jt-atc-popup__overlay" data-jt-popup-close></div>
+
+			<div
+				class="jt-atc-popup__dialog"
+				role="dialog"
+				aria-modal="true"
+				aria-labelledby="jt-atc-popup-title"
+				aria-describedby="jt-atc-popup-text"
+			>
+				<button
+					type="button"
+					class="jt-atc-popup__close"
+					aria-label="Zatvoriť okno"
+					data-jt-popup-close
+				>
+					<span aria-hidden="true">&times;</span>
+				</button>
+
+				<div class="jt-atc-popup__inner">
+					<div class="jt-atc-popup__status">
+						<span class="jt-atc-popup__icon" aria-hidden="true">✓</span>
+
+						<div class="jt-atc-popup__heading">
+							<h3 id="jt-atc-popup-title">Produkt bol pridaný do košíka</h3>
+							<p id="jt-atc-popup-text">Tovar je pripravený v košíku.</p>
+						</div>
+					</div>
+
+					<div class="jt-atc-popup__product">
+						<div class="jt-atc-popup__image-wrap">
+							<img
+								class="jt-atc-popup__image"
+								src="<?php echo esc_url(wc_placeholder_img_src('woocommerce_thumbnail')); ?>"
+								alt=""
+								loading="lazy"
+							>
+						</div>
+
+						<div class="jt-atc-popup__content">
+							<p class="jt-atc-popup__product-name"></p>
+							<p class="jt-atc-popup__product-price"></p>
+						</div>
+					</div>
+
+					<div class="jt-atc-popup__actions">
+						<button type="button" class="jt-atc-popup__button jt-atc-popup__button--ghost" data-jt-popup-close>
+							Pokračovať v nákupe
+						</button>
+
+						<a class="jt-atc-popup__button jt-atc-popup__button--primary" href="<?php echo esc_url(wc_get_cart_url()); ?>">
+							Pokračovať do košíka
+						</a>
+					</div>
+				</div>
+			</div>
+		</div>
+		<?php
+	}
+}
+add_action('wp_footer', 'jtcollector_render_add_to_cart_popup', 120);
+
 add_action('wp', 'jtcollector_single_related_products_hooks');
